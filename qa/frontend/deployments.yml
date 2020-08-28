@@ -3,11 +3,11 @@ apiVersion: apps/v1
 kind: Deployment
 metadata:
   annotations:
-    fluxcd.io/automated: 'true'
+    fluxcd.io/automated: "true"
   name: clin-frontend
 spec:
   template:
     spec:
       containers:
-        - image: chusj/clin-frontend:aefc01277be3a1655fcf24d31afa4da95e923b1c
+        - image: chusj/clin-frontend:dc1070ed5123600af3da0b4945aa443b5865619e
           name: clin-frontend
