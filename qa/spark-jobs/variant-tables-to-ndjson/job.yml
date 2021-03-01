@@ -2,7 +2,7 @@
 apiVersion: batch/v1
 kind: Job
 metadata:
-  name: variant-tables-to-ndjson
+  name: variant-tables-to-ndjson-20210301-1542
   namespace: spark
 spec:
   template:
@@ -36,7 +36,7 @@ spec:
           - "/opt/client-entrypoint.sh"
         args:
           - s3a://clin/es_variant_index_ndjson/new
-          - BAT1
+          - 1900-01-01 00:00:00
       restartPolicy: Never
       volumes:
         - name: spark-defaults
