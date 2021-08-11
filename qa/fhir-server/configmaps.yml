@@ -9,3 +9,4 @@ data:
   BIO_ELASTICSEARCH_PATIENT_INDEX: prescriptions
   HAPI_FHIR_SERVER_ADDRESS: https://fhir.qa.clin.ferlab.bio/fhir/
   JAVA_OPTS: "-server -Xmx2048m -Djava.net.preferIPv4Stack=true -Djava.awt.headless=true -XX:+UseContainerSupport"
+  BIO_AUTH_AUTHORIZATION_ENABLED: false
