@@ -1,0 +1,48 @@
+---
+apiVersion: batch/v1
+kind: Job
+metadata:
+  name: raw-normamlized-fhir-etl
+  namespace: spark
+spec:
+  template:
+    spec:
+      serviceAccountName: spark
+      containers:
+        - name: raw-normamlized-fhir-etl
+          image: ferlabcrsj/spark:3.1.2
+          env:
+            - name: SPARK_CLASS
+              value: bio.ferlab.clin.etl.fhir.FhirRawToNormalized
+            - name: SPARK_JAR
+              value: s3a://spark/clin-variant-etl.jar
+            - name: SPARK_CLIENT_POD_NAME
+              valueFrom:
+                fieldRef:
+                  fieldPath: metadata.name
+          volumeMounts:
+            - name: spark-defaults
+              mountPath: /opt/spark-configs/defaults
+              readOnly: true
+            - name: raw-normamlized-fhir-etl
+              mountPath: /opt/spark-configs/raw-normamlized-fhir-etl
+              readOnly: true
+            - name: s3-credentials
+              mountPath: /opt/spark-configs/s3-credentials
+              readOnly: true
+          command:
+            - "/opt/client-entrypoint.sh"
+          args:
+            - config/qa.conf
+      restartPolicy: Never
+      volumes:
+        - name: spark-defaults
+          configMap:
+            name: spark-defaults
+        - name: raw-normamlized-fhir-etl
+          configMap:
+            name: raw-normamlized-fhir-etl
+        - name: s3-credentials
+          secret:
+            secretName: s3-credentials
+  backoffLimit: 4

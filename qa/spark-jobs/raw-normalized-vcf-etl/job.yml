@@ -2,20 +2,20 @@
 apiVersion: batch/v1
 kind: Job
 metadata:
-  name: variant-etl
+  name: raw-normalized-vcf-etl
   namespace: spark
 spec:
   template:
     spec:
       serviceAccountName: spark
       containers:
-      - name: variant-etl
-        image: ferlabcrsj/spark:ba3d4e6d97baef31fb450cb6c75c73b19ec64fce
+      - name: raw-normalized-vcf-etl
+        image: ferlabcrsj/spark:3.1.2
         env:
           - name: SPARK_CLASS
             value: bio.ferlab.clin.etl.vcf.ImportVcf
           - name: SPARK_JAR
-            value: s3a://spark/clin-etl-variant.jar
+            value: s3a://clin-qa-app-datalake/spark/clin-variant-etl.jar
           - name: SPARK_CLIENT_POD_NAME
             valueFrom:
               fieldRef:
@@ -24,8 +24,8 @@ spec:
           - name: spark-defaults
             mountPath: /opt/spark-configs/defaults
             readOnly: true
-          - name: variant-etl
-            mountPath: /opt/spark-configs/variant-etl
+          - name: raw-normalized-vcf-etl
+            mountPath: /opt/spark-configs/raw-normalized-vcf-etl
             readOnly: true
           - name: s3-credentials
             mountPath: /opt/spark-configs/s3-credentials
@@ -33,18 +33,17 @@ spec:
         command:
           - "/opt/client-entrypoint.sh"
         args:
-          - s3a://clin/vcf/complete_joint_calling.vqsr.bcftools_norm_ref.vep_20191218.SeqCap_EZ_Exome_v3_capture.vcf.gz
-          - s3a://clin/variant_db/normalized
-          - BAT1
+          - BAT0
           - all
+          - config/qa.conf
       restartPolicy: Never
       volumes:
         - name: spark-defaults
           configMap:
             name: spark-defaults
-        - name: variant-etl
+        - name: raw-normalized-vcf-etl
           configMap:
-            name: variant-etl
+            name: raw-normalized-vcf-etl
         - name: s3-credentials
           secret:
             secretName: s3-credentials

@@ -2,15 +2,15 @@
 apiVersion: v1
 kind: ConfigMap
 metadata:
-  name: fhir-raw-to-normamlized
+  name: enriched-elasticsearch-etl
   namespace: spark
   labels:
     name: spark
 data:
   spark-ceph.conf: |
-    spark.app.name=fhir-raw-to-normamlized
+    spark.app.name=enriched-elasticsearch-etl
     spark.executor.instances=10
-    spark.kubernetes.container.image=ferlabcrsj/spark:ba3d4e6d97baef31fb450cb6c75c73b19ec64fce
+    spark.kubernetes.container.image=ferlabcrsj/spark:3.1.2
     spark.hadoop.fs.s3a.endpoint=https://esc.calculquebec.ca:8080
     spark.sql.shuffle.partitions=500
     spark.sql.extensions=io.delta.sql.DeltaSparkSessionExtension

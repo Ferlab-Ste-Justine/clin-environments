@@ -2,20 +2,20 @@
 apiVersion: batch/v1
 kind: Job
 metadata:
-  name: enriched-variant-etl
+  name: enriched-elasticsearch-etl
   namespace: spark
 spec:
   template:
     spec:
       serviceAccountName: spark
       containers:
-        - name: enriched-variant-etl
-          image: ferlabcrsj/spark:ba3d4e6d97baef31fb450cb6c75c73b19ec64fce
+        - name: enriched-elasticsearch-etl
+          image: ferlabcrsj/spark:3.1.2
           env:
             - name: SPARK_CLASS
-              value: bio.ferlab.clin.etl.enriched.RunEnriched
+              value: bio.ferlab.clin.etl.es.Indexer
             - name: SPARK_JAR
-              value: s3a://spark/clin-etl-variant.jar
+              value: s3a://clin-qa-app-datalake/spark/clin-variant-etl.jar
             - name: SPARK_CLIENT_POD_NAME
               valueFrom:
                 fieldRef:
@@ -24,8 +24,8 @@ spec:
             - name: spark-defaults
               mountPath: /opt/spark-configs/defaults
               readOnly: true
-            - name: enriched-variant-etl
-              mountPath: /opt/spark-configs/enriched-variant-etl
+            - name: enriched-elasticsearch-etl
+              mountPath: /opt/spark-configs/enriched-elasticsearch-etl
               readOnly: true
             - name: s3-credentials
               mountPath: /opt/spark-configs/s3-credentials
@@ -33,18 +33,21 @@ spec:
           command:
             - "/opt/client-entrypoint.sh"
           args:
-            - s3a://clin/variant_db/normalized
-            - s3a://clin/variant_db/enriched
-            - 1900-01-01 00:00:00
+            - http://0.0.0.0:9200
+            - variant_index
+            - RE_00000
+            - variant_centric_template.json
             - variants
+            - BAT0
+            - config/qa.conf
       restartPolicy: Never
       volumes:
         - name: spark-defaults
           configMap:
             name: spark-defaults
-        - name: enriched-variant-etl
+        - name: enriched-elasticsearch-etl
           configMap:
-            name: enriched-variant-etl
+            name: enriched-elasticsearch-etl
         - name: s3-credentials
           secret:
             secretName: s3-credentials
