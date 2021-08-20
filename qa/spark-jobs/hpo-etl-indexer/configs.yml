@@ -9,7 +9,7 @@ data:
   spark-ceph.conf: |
     spark.app.name=hpo-etl-indexer
     spark.executor.instances=1
-    spark.kubernetes.container.image=ferlabcrsj/spark:0edb597e24b5320a3363e0c07050736c325082b5
+    spark.kubernetes.container.image=ferlabcrsj/spark:3.1.2
     spark.hadoop.fs.s3a.endpoint=https://s3.ops.cqdg.ferlab.bio
     spark.es.nodes=http://elasticsearch-workers:9200
     spark.sql.shuffle.partitions=500

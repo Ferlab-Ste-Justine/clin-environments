@@ -2,14 +2,14 @@
 apiVersion: batch/v1
 kind: Job
 metadata:
-  name: enriched-elasticsearch-etl
+  name: enriched-elasticsearch-etl-20211020-1601
 spec:
   template:
     spec:
       serviceAccountName: spark
       containers:
         - name: enriched-elasticsearch-etl
-          image: ferlabcrsj/spark:0edb597e24b5320a3363e0c07050736c325082b5
+          image: ferlabcrsj/spark:3.1.2
           env:
             - name: SPARK_CLASS
               value: bio.ferlab.clin.etl.es.Indexer
@@ -32,12 +32,14 @@ spec:
           command:
             - "/opt/client-entrypoint.sh"
           args:
-            - http://0.0.0.0:9200
-            - variant_index
-            - RE_00000
-            - variant_centric_template.json
+            - "https://search.ops.cqdg.ferlab.bio:443"
+            - "<username>"
+            - "<password>"
+            - clin_qa_variants
+            - re_000
+            - variants_template.json
             - variants
-            - BAT0
+            - "1900-01-01 00:00:00"
             - config/qa.conf
       restartPolicy: Never
       volumes:
@@ -51,3 +53,5 @@ spec:
           secret:
             secretName: s3-credentials
   backoffLimit: 4
+
+

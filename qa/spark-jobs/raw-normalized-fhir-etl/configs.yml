@@ -2,15 +2,16 @@
 apiVersion: v1
 kind: ConfigMap
 metadata:
-  name: raw-normamlized-fhir-etl
+  name: raw-normalized-fhir-etl
   labels:
     name: spark
 data:
   spark-ceph.conf: |
-    spark.app.name=raw-normamlized-fhir-etl
-    spark.executor.instances=10
-    spark.kubernetes.container.image=ferlabcrsj/spark:0edb597e24b5320a3363e0c07050736c325082b5
+    spark.app.name=raw-normalized-fhir-etl
+    spark.kubernetes.container.image=ferlabcrsj/spark:3.1.2
     spark.sql.shuffle.partitions=500
     spark.sql.extensions=io.delta.sql.DeltaSparkSessionExtension
     spark.sql.catalog.spark_catalog=org.apache.spark.sql.delta.catalog.DeltaCatalog
-    spark.executor.memory=8g
+    spark.executor.instances=3
+    spark.executor.memory=20g
+    spark.executor.cores=3
