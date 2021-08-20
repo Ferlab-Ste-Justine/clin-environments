@@ -9,7 +9,7 @@ data:
   spark-ceph.conf: |
     spark.app.name=spark-sql-exec
     spark.executor.instances=1
-    spark.kubernetes.container.image=ferlabcrsj/spark:0edb597e24b5320a3363e0c07050736c325082b5
+    spark.kubernetes.container.image=ferlabcrsj/spark:3.1.2
     spark.sql.shuffle.partitions=500
     spark.sql.extensions=io.delta.sql.DeltaSparkSessionExtension
     spark.sql.catalog.spark_catalog=org.apache.spark.sql.delta.catalog.DeltaCatalog

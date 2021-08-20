@@ -2,48 +2,59 @@
 apiVersion: batch/v1
 kind: Job
 metadata:
-  name: raw-normalized-vcf-etl
+  name: raw-normalized-vcf-etl-occurrences-20211020-1021
 spec:
+  backoffLimit: 4
   template:
     spec:
-      serviceAccountName: spark
       containers:
-      - name: raw-normalized-vcf-etl
-        image: ferlabcrsj/spark:0edb597e24b5320a3363e0c07050736c325082b5
-        env:
-          - name: SPARK_CLASS
-            value: bio.ferlab.clin.etl.vcf.ImportVcf
-          - name: SPARK_JAR
-            value: s3a://clin-qa-app-datalake/spark/clin-variant-etl.jar
-          - name: SPARK_CLIENT_POD_NAME
-            valueFrom:
-              fieldRef:
-                fieldPath: metadata.name
-        volumeMounts:
-          - name: spark-defaults
-            mountPath: /opt/spark-configs/defaults
-            readOnly: true
-          - name: raw-normalized-vcf-etl
-            mountPath: /opt/spark-configs/raw-normalized-vcf-etl
-            readOnly: true
-          - name: s3-credentials
-            mountPath: /opt/spark-configs/s3-credentials
-            readOnly: true
-        command:
-          - "/opt/client-entrypoint.sh"
-        args:
-          - config/qa.conf
-          - BAT0
-          - all
+        -
+          args:
+            - config/qa.conf
+            - 201106_A00516_0169_AHFM3HDSXY
+            - occurrences
+            - first_load
+          command:
+            - /opt/client-entrypoint.sh
+          env:
+            -
+              name: SPARK_CLASS
+              value: bio.ferlab.clin.etl.vcf.ImportVcf
+            -
+              name: SPARK_JAR
+              value: "s3a://clin-qa-app-datalake/spark/clin-variant-etl.jar"
+            -
+              name: SPARK_CLIENT_POD_NAME
+              valueFrom:
+                fieldRef:
+                  fieldPath: metadata.name
+          image: "ferlabcrsj/spark:3.1.2"
+          name: raw-normalized-vcf-etl
+          volumeMounts:
+            -
+              mountPath: /opt/spark-configs/defaults
+              name: spark-defaults
+              readOnly: true
+            -
+              mountPath: /opt/spark-configs/raw-normalized-vcf-etl
+              name: raw-normalized-vcf-etl
+              readOnly: true
+            -
+              mountPath: /opt/spark-configs/s3-credentials
+              name: s3-credentials
+              readOnly: true
       restartPolicy: Never
+      serviceAccountName: spark
       volumes:
-        - name: spark-defaults
+        -
           configMap:
             name: spark-defaults
-        - name: raw-normalized-vcf-etl
+          name: spark-defaults
+        -
           configMap:
             name: raw-normalized-vcf-etl
-        - name: s3-credentials
+          name: raw-normalized-vcf-etl
+        -
+          name: s3-credentials
           secret:
             secretName: s3-credentials
-  backoffLimit: 4

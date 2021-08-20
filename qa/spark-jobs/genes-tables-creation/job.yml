@@ -11,7 +11,7 @@ spec:
         - name: images-pull
       containers:
       - name: genes-tables-creation
-        image: ferlabcrsj/spark:0edb597e24b5320a3363e0c07050736c325082b5
+        image: ferlabcrsj/spark:3.1.2
         env:
           - name: SPARK_CLASS
             value: bio.ferlab.clin.etl.external.CreateGenesTable
