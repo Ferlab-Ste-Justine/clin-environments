@@ -1,0 +1,22 @@
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: arranger
+  annotations:
+    fluxcd.io/automated: 'true'
+spec:
+  template:
+    spec:
+      imagePullSecrets:
+        - name: images-pull
+      containers:
+        - image: ferlabcrsj/clin-arranger:fba9ddc0ce38c200c0f2e3de3922fce0395a11df
+          name: arranger
+          resources:
+            requests:
+              memory: "512Mi"
+              cpu: '1'
+            limits:
+              memory: "1024Mi"
+              cpu: '2'
