@@ -4,6 +4,7 @@ kind: Kustomization
 resources:
   - certificate
   - ferload
+  - arranger
   - fhir-console
   - fhir-server
   - frontend
