@@ -17,3 +17,6 @@ data:
     keycloak.resource=fhir-console
     keycloak.public-client=true
     keycloak.principal-attribute=preferred_username
+    bio.keycloak.auth-server-url=https://auth.staging.clin.ferlab.bio/auth/
+    bio.keycloak.realm=clin
+    bio.keycloak.audience=clin-acl

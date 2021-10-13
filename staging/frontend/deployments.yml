@@ -27,5 +27,9 @@ spec:
               value: https://fhir.staging.clin.ferlab.bio/fhir
             - name: HPO_SERVICE_URL
               value: https://hpo.staging.clin.ferlab.bio/hpo
+            - name: ARRANGER_API
+              value: https://data-api.staging.clin.ferlab.bio
+            - name: ARRANGER_PROJECT_ID
+              value: clin_2021_08_27_v3_1_163
             - name: KEYCLOAK_CONFIG
               value: "{\\\"realm\\\": \\\"clin\\\", \\\"url\\\": \\\"https://auth.staging.clin.ferlab.bio/auth/\\\", \\\"clientId\\\": \\\"clin-client\\\", \\\"authClientId\\\": \\\"clin-acl\\\"}"
