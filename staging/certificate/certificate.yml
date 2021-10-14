@@ -19,3 +19,4 @@ spec:
     - fhir-console.staging.clin.ferlab.bio
     - ferload.staging.clin.ferlab.bio
     - notebook.staging.clin.ferlab.bio
+    - data-api.staging.clin.ferlab.bio
