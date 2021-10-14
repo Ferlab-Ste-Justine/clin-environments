@@ -24,7 +24,7 @@ spec:
       $setElementOrder/containers:
       - name: arranger
       containers:
-      - image: ferlabcrsj/clin-arranger:63b44077e060074971727577fd98802bb4b1a4a5
+      - image: ferlabcrsj/clin-arranger:bc74a4b70fc2848a6f7e24aaeeb1d83323eed6bc
         name: arranger
 ---
 apiVersion: apps/v1
