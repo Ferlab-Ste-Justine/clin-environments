@@ -21,3 +21,4 @@ configMapGenerator:
       - AUTH_REALM=CLIN
       - SERVICE_ACCOUNT_CLIENT_ID=clin-system
       - SECURE="true"
+      - PORT=5050
