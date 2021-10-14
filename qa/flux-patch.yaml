@@ -16,6 +16,20 @@ spec:
 apiVersion: apps/v1
 kind: Deployment
 metadata:
+  name: arranger
+  namespace: clin-qa
+spec:
+  template:
+    spec:
+      $setElementOrder/containers:
+      - name: arranger
+      containers:
+      - image: ferlabcrsj/clin-arranger:63b44077e060074971727577fd98802bb4b1a4a5
+        name: arranger
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
   name: clin-ferload
   namespace: clin-qa
 spec:
