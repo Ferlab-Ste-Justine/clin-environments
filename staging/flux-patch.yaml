@@ -108,7 +108,7 @@ spec:
       $setElementOrder/containers:
       - name: clin-proxy-api-hpo
       containers:
-      - image: ferlabcrsj/clin-proxy-api-hpo-service:2.1.6
+      - image: ferlabcrsj/clin-proxy-api-hpo-service:2.1.7
         name: clin-proxy-api-hpo
 ---
 apiVersion: apps/v1
@@ -136,7 +136,7 @@ spec:
       $setElementOrder/containers:
       - name: clin-proxy-api-patient
       containers:
-      - image: ferlabcrsj/clin-proxy-api-patient-service:2.1.6
+      - image: ferlabcrsj/clin-proxy-api-patient-service:2.1.7
         name: clin-proxy-api-patient
 ---
 apiVersion: apps/v1
@@ -150,7 +150,7 @@ spec:
       $setElementOrder/containers:
       - name: clin-proxy-api-variant
       containers:
-      - image: ferlabcrsj/clin-proxy-api-variant-service:2.1.6
+      - image: ferlabcrsj/clin-proxy-api-variant-service:2.1.7
         name: clin-proxy-api-variant
 ---
 apiVersion: apps/v1
