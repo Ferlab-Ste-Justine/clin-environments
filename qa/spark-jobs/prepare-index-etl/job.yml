@@ -2,17 +2,17 @@
 apiVersion: batch/v1
 kind: Job
 metadata:
-  name: enriched-elasticsearch-etl
+  name: prepare-index-etl
 spec:
   template:
     spec:
       serviceAccountName: spark
       containers:
-        - name: enriched-elasticsearch-etl
+        - name: prepare-index-etl
           image: ferlabcrsj/spark:3.1.2
           env:
             - name: SPARK_CLASS
-              value: bio.ferlab.clin.etl.es.Indexer
+              value: bio.ferlab.clin.etl.es.PrepareIndex
             - name: SPARK_JAR
               value: s3a://clin-qa-app-datalake/spark/clin-variant-etl.jar
             - name: SPARK_CLIENT_POD_NAME
@@ -23,8 +23,8 @@ spec:
             - name: spark-defaults
               mountPath: /opt/spark-configs/defaults
               readOnly: true
-            - name: enriched-elasticsearch-etl
-              mountPath: /opt/spark-configs/enriched-elasticsearch-etl
+            - name: prepare-index-etl
+              mountPath: /opt/spark-configs/prepare-index-etl
               readOnly: true
             - name: s3-credentials
               mountPath: /opt/spark-configs/s3-credentials
@@ -32,26 +32,20 @@ spec:
           command:
             - "/opt/client-entrypoint.sh"
           args:
-            - "https://search.ops.cqdg.ferlab.bio:443"
-            - "<username>"
-            - "<password>"
-            - "clin_qa_variants"
-            - "re_000"
-            - "variants_template.json"
-            - "variants"
-            - "1900-01-01 00:00:00"
-            - "config/qa.conf"
+            - config/qa.conf
+            - variants
+            - re_000
+            - "incremental_load"
+
       restartPolicy: Never
       volumes:
         - name: spark-defaults
           configMap:
             name: spark-defaults
-        - name: enriched-elasticsearch-etl
+        - name: prepare-index-etl
           configMap:
-            name: enriched-elasticsearch-etl
+            name: prepare-index-etl
         - name: s3-credentials
           secret:
             secretName: s3-credentials
   backoffLimit: 4
-
-

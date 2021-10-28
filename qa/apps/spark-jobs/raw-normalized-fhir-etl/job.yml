@@ -33,6 +33,8 @@ spec:
             - "/opt/client-entrypoint.sh"
           args:
             - config/qa.conf
+            - all
+            - incremental_load
       restartPolicy: Never
       volumes:
         - name: spark-defaults
