@@ -2,7 +2,7 @@
 apiVersion: batch/v1
 kind: Job
 metadata:
-  name: raw-normalized-vcf-etl-occurrences-20211020-1021
+  name: raw-normalized-vcf-etl
 spec:
   backoffLimit: 4
   template:
@@ -12,7 +12,8 @@ spec:
           args:
             - config/qa.conf
             - 201106_A00516_0169_AHFM3HDSXY
-            - occurrences
+            - consequences
+            - chr11
             - first_load
           command:
             - /opt/client-entrypoint.sh
