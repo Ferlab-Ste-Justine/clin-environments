@@ -1,0 +1,71 @@
+apiVersion: kustomize.toolkit.fluxcd.io/v1beta2
+kind: Kustomization
+metadata:
+  name: hive-metastore
+spec:
+  serviceAccountName: root-repo
+  interval: 2m
+  path: "./staging/apps/hive-metastore"
+  sourceRef:
+    kind: GitRepository
+    name: root-repo
+  prune: true
+  healthChecks:
+    - apiVersion: apps/v1
+      kind: Deployment
+      name: hive-metastore
+      namespace: clin-staging
+---
+apiVersion: image.toolkit.fluxcd.io/v1beta1
+kind: ImageUpdateAutomation
+metadata:
+  name: hive-metastore
+spec:
+  sourceRef:
+    kind: GitRepository
+    name: root-repo
+  interval: 1m
+  update:
+    strategy: Setters
+    path: "./staging/apps/hive-metastore"
+  git:
+    checkout:
+      ref:
+        branch: master
+    commit:
+      author:
+        name: ferlab-automation
+        email: automation@ferlab.bio
+      messageTemplate: |
+        Auto-release from fluxcd      
+    push:
+      branch: master
+---
+apiVersion: image.toolkit.fluxcd.io/v1beta1
+kind: ImageRepository
+metadata:
+  name: hive-metastore
+spec:
+  image: index.docker.io/ferlabcrsj/hive-metastore
+  interval: 1m
+  secretRef:
+    name: images-pull
+  accessFrom:
+    namespaceSelectors:
+      - matchLabels:
+          kubernetes.io/metadata.name: fluxcd-clin-staging
+---
+kind: ImagePolicy
+apiVersion: image.toolkit.fluxcd.io/v1beta1
+metadata:
+  name: hive-metastore
+spec:
+  imageRepositoryRef:
+    name: hive-metastore
+    namespace: fluxcd-clin-staging
+  filterTags:
+    pattern: '^[a-fA-F0-9]+-(?P<ts>.*)'
+    extract: '$ts'
+  policy:
+     numerical:
+      order: asc

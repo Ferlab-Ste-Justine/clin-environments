@@ -3,6 +3,14 @@ name: Validate Manifests
 on: [push]
 
 jobs:
+  validate-fluxcd:
+    name: Validate Root Fluxcd Manifests
+    runs-on: ubuntu-18.04
+    container: fluxcd/flux:1.21.0
+    steps:
+    - uses: actions/checkout@v2
+    - name: Kustomize Build
+      run: kustomize build .
   Validate-qa-fluxcd:
     name: Validate Qa Fluxcd Manifests
     runs-on: ubuntu-18.04
@@ -30,8 +38,8 @@ jobs:
     - name: Kustomize Build
       run: kustomize build .
       working-directory: qa/apps/${{ matrix.app }}
-  Validate-stating:
-    name: Validate Staging Manifests
+  Validate-staging-fluxcd:
+    name: Validate Qa Fluxcd Manifests
     runs-on: ubuntu-18.04
     container: fluxcd/flux:1.21.0
     steps:
@@ -41,4 +49,19 @@ jobs:
       working-directory: staging
     - name: Kustomize Build
       run: kustomize build .
+      working-directory: staging/fluxcd
+  Validate-staging-apps:
+    name: Validate Staging App Manifests
+    runs-on: ubuntu-18.04
+    container: fluxcd/flux:1.21.0
+    strategy:
+      matrix:
+        app: [arranger, certificate, elasticsearch, ferload, fhir-console, fhir-server, fluentd, frontend, git-autosync, hive-metastore, keycloak, notebook, proxy-api, spark-core, spark-sql, terraform]
+    steps:
+    - uses: actions/checkout@v2
+    - name: Get git submodules
+      run: git submodule init && git submodule update
       working-directory: staging
+    - name: Kustomize Build
+      run: kustomize build .
+      working-directory: staging/apps/${{ matrix.app }}

@@ -1,0 +1,65 @@
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: clin-proxy-api-meta
+spec:
+  template:
+    spec:
+      imagePullSecrets:
+        - name: images-pull
+      containers:
+        - image: ferlabcrsj/clin-proxy-api-meta-service:2.1.8 # {"$imagepolicy": "fluxcd-clin-staging:clin-proxy-api-meta-service"}
+          name: clin-proxy-api-meta
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: clin-proxy-api-gene
+spec:
+  template:
+    spec:
+      imagePullSecrets:
+        - name: images-pull
+      containers:
+        - image: ferlabcrsj/clin-proxy-api-gene-service:2.1.8 # {"$imagepolicy": "fluxcd-clin-staging:clin-proxy-api-gene-service"}
+          name: clin-proxy-api-gene
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: clin-proxy-api-variant
+spec:
+  template:
+    spec:
+      imagePullSecrets:
+        - name: images-pull
+      containers:
+        - image: ferlabcrsj/clin-proxy-api-variant-service:2.1.8 # {"$imagepolicy": "fluxcd-clin-staging:clin-proxy-api-variant-service"}
+          name: clin-proxy-api-variant
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: clin-proxy-api-patient
+spec:
+  template:
+    spec:
+      imagePullSecrets:
+        - name: images-pull
+      containers:
+        - image: ferlabcrsj/clin-proxy-api-patient-service:2.1.8 # {"$imagepolicy": "fluxcd-clin-staging:clin-proxy-api-patient-service"}
+          name: clin-proxy-api-patient
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: clin-proxy-api-hpo
+spec:
+  template:
+    spec:
+      imagePullSecrets:
+        - name: images-pull
+      containers:
+        - image: ferlabcrsj/clin-proxy-api-hpo-service:2.1.8 # {"$imagepolicy": "fluxcd-clin-staging:clin-proxy-api-hpo-service"}
+          name: clin-proxy-api-hpo
