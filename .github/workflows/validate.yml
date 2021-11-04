@@ -29,7 +29,7 @@ jobs:
       working-directory: qa
     - name: Kustomize Build
       run: kustomize build .
-      working-directory: qa/${{ matrix.app }}
+      working-directory: qa/apps/${{ matrix.app }}
   Validate-stating:
     name: Validate Staging Manifests
     runs-on: ubuntu-18.04
