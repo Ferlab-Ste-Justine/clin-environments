@@ -1,0 +1,24 @@
+apiVersion: apps/v1
+kind: DaemonSet
+metadata:
+  name: fluentd
+  namespace: kube-system
+spec:
+  template:
+    spec:
+      serviceAccountName: fluentd
+      imagePullSecrets:
+        - name: images-pull
+      containers:
+        - name: fluentd
+          env:
+            - name:  FLUENT_ELASTICSEARCH_HOST
+              value: "elasticsearch-workers.clin-staging.svc.cluster.clin.qa"
+            - name:  FLUENT_ELASTICSEARCH_LOGSTASH_PREFIX
+              value: "clin-qa-kubernetes-logs"
+          resources:
+            limits:
+              memory: 1Gi
+            requests:
+              cpu: 100m
+              memory: 1Gi

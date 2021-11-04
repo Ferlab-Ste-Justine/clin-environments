@@ -1,0 +1,13 @@
+---
+apiVersion: kustomize.config.k8s.io/v1beta1
+kind: Kustomization
+
+namespace: clin-qa
+
+resources:
+  - ../../../common/fhir-console
+  - ingresses.yml
+
+patchesStrategicMerge:
+  - configs.yml
+  - deployments.yml
