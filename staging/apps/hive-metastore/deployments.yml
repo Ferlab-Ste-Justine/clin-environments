@@ -11,7 +11,7 @@ spec:
         - name: images-pull
       containers:
         - name: hive-metastore
-          image: ferlabcrsj/hive-metastore:652b9944cbab17db5ba45d6ed53735ba191adba1 # {"$imagepolicy": "flux-clin-staging:hive-metastore"}
+          image: index.docker.io/ferlabcrsj/hive-metastore:652b9944cbab17db5ba45d6ed53735ba191adba1-1635951075 # {"$imagepolicy": "flux-clin-staging:hive-metastore"}
           env:
             - name: JDBC_CONNECTION_URL
               value: jdbc:postgresql://postgres-server-qa:5432/clin_hive_metastore_staging?sslmode=verify-full&amp;sslrootcert=/opt/ca/ca.pem
