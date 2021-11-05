@@ -26,6 +26,10 @@ spec:
               value: https://hpo.qa.clin.ferlab.bio/hpo
             - name: ARRANGER_API
               value: https://data-api.qa.clin.ferlab.bio
+            - name: ZEPLIN_URL
+              value: https://notebook.qa.clin.ferlab.bio
+            - name: FHIR_CONSOLE_URL
+              value: https://fhir-console.qa.clin.ferlab.bio/home
             - name: ARRANGER_PROJECT_ID
               value: clin_2021_08_27_v3_1_163
             - name: KEYCLOAK_CONFIG
