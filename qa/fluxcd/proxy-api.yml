@@ -41,7 +41,6 @@ spec:
   sourceRef:
     kind: GitRepository
     name: clin-environments
-    namespace: flux-clin-qa
   interval: 1m
   update:
     strategy: Setters
