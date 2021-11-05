@@ -3,7 +3,7 @@ kind: Kustomization
 metadata:
   name: proxy-api
 spec:
-  serviceAccountName: root-repo
+  serviceAccountName: flux
   interval: 2m
   path: "./staging/apps/proxy-api"
   sourceRef:

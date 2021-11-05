@@ -3,7 +3,7 @@ kind: Kustomization
 metadata:
   name: frontend
 spec:
-  serviceAccountName: root-repo
+  serviceAccountName: flux
   interval: 1m
   path: "./qa/apps/frontend"
   sourceRef:

@@ -4,7 +4,7 @@ metadata:
   name: qa
   namespace: flux-clin-qa
 spec:
-  serviceAccountName: root-repo
+  serviceAccountName: flux
   interval: 1m
   path: "./qa/fluxcd"
   sourceRef:

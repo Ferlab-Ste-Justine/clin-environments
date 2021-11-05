@@ -3,7 +3,7 @@ kind: Kustomization
 metadata:
   name: keycloak
 spec:
-  serviceAccountName: root-repo
+  serviceAccountName: flux
   interval: 2m
   path: "./staging/apps/keycloak"
   sourceRef:

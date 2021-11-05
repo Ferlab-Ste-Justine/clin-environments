@@ -4,7 +4,7 @@ metadata:
   name: staging
   namespace: flux-clin-staging
 spec:
-  serviceAccountName: root-repo
+  serviceAccountName: flux
   interval: 1m
   path: "./staging/fluxcd"
   sourceRef:

@@ -3,7 +3,7 @@ kind: Kustomization
 metadata:
   name: spark-sql
 spec:
-  serviceAccountName: root-repo
+  serviceAccountName: flux
   interval: 1m
   path: "./qa/apps/spark-sql"
   sourceRef:

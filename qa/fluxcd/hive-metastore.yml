@@ -3,7 +3,7 @@ kind: Kustomization
 metadata:
   name: hive-metastore
 spec:
-  serviceAccountName: root-repo
+  serviceAccountName: flux
   interval: 2m
   path: "./qa/apps/hive-metastore"
   sourceRef:
