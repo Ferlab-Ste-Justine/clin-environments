@@ -23,7 +23,7 @@ spec:
   recurseSubmodules: false
   url: ssh://git@github.com/Ferlab-Ste-Justine/clin-environments.git
   secretRef:
-    name: root-repo-fluxcd-key
+    name: clin-environments-fluxcd-key
   ref:
     branch: master
   include:
