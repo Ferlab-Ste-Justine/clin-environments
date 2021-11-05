@@ -16,7 +16,7 @@ spec:
         - name: images-pull
       containers:
         - name: git-autosync
-          image: ferlabcrsj/git-autosync:1.2.0 # {"$imagepolicy": "fluxcd-clin-staging:git-autosync"}
+          image: ferlabcrsj/git-autosync:1.2.0 # {"$imagepolicy": "flux-clin-staging:git-autosync"}
           env:
             - name: SCRAPE_INTERVAL
               value: "120000"

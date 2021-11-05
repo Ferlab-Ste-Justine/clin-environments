@@ -9,7 +9,7 @@ spec:
   sourceRef:
     kind: GitRepository
     name: clin-environments
-    namespace: flux-system
+    namespace: flux-clin-staging
   prune: true
   healthChecks:
     - apiVersion: apps/v1
@@ -45,7 +45,7 @@ spec:
   update:
     strategy: Setters
     path: "./staging/apps/proxy-api"
-    namespace: flux-system
+    namespace: flux-clin-staging
   git:
     checkout:
       ref:

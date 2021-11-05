@@ -9,7 +9,7 @@ spec:
       imagePullSecrets:
         - name: images-pull
       containers:
-        - image: ferlabcrsj/clin-arranger:a62e3c037956ab750bae6f55ab51f3cd41f9bb02-1635909642 # {"$imagepolicy": "fluxcd-clin-staging:arranger"}
+        - image: ferlabcrsj/clin-arranger:a62e3c037956ab750bae6f55ab51f3cd41f9bb02-1635909642 # {"$imagepolicy": "flux-clin-staging:arranger"}
           name: arranger
           resources:
             requests:

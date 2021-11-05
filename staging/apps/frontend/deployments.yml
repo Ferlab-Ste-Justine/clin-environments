@@ -9,7 +9,7 @@ spec:
       imagePullSecrets:
         - name: images-pull
       containers:
-        - image: ferlabcrsj/clin-frontend:4.0.8 # {"$imagepolicy": "fluxcd-clin-staging:frontend"}
+        - image: ferlabcrsj/clin-frontend:4.0.8 # {"$imagepolicy": "flux-clin-staging:frontend"}
           name: clin-frontend
           env:
             - name: PATIENT_SERVICE_URL
