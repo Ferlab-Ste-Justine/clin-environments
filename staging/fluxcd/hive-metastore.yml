@@ -3,7 +3,7 @@ kind: Kustomization
 metadata:
   name: hive-metastore
 spec:
-  serviceAccountName: root-repo
+  serviceAccountName: flux
   interval: 2m
   path: "./staging/apps/hive-metastore"
   sourceRef:

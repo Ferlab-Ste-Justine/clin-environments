@@ -3,7 +3,7 @@ kind: Kustomization
 metadata:
   name: arranger
 spec:
-  serviceAccountName: root-repo
+  serviceAccountName: flux
   interval: 1m
   path: "./staging/apps/arranger"
   sourceRef:

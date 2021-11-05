@@ -3,7 +3,7 @@ kind: Kustomization
 metadata:
   name: elasticsearch
 spec:
-  serviceAccountName: root-repo
+  serviceAccountName: flux
   interval: 1m
   path: "./staging/apps/elasticsearch"
   sourceRef:
