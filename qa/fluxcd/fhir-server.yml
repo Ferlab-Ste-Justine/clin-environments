@@ -27,6 +27,7 @@ spec:
   sourceRef:
     kind: GitRepository
     name: root-repo
+    namespace: flux-system
   interval: 1m
   update:
     strategy: Setters

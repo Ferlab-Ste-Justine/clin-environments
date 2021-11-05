@@ -45,6 +45,7 @@ spec:
   update:
     strategy: Setters
     path: "./staging/apps/proxy-api"
+    namespace: flux-system
   git:
     checkout:
       ref:
