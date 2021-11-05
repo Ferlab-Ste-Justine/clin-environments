@@ -1,3 +1,39 @@
+---
+apiVersion: source.toolkit.fluxcd.io/v1beta1
+kind: GitRepository
+metadata:
+  name: common-orchestrations-master
+  namespace: flux-clin-staging
+spec:
+  interval: 1m
+  timeout: 30s
+  recurseSubmodules: false
+  url: https://github.com/Ferlab-Ste-Justine/cqdg-orchestrations.git
+  ref:
+    branch: master
+---
+apiVersion: source.toolkit.fluxcd.io/v1beta1
+kind: GitRepository
+metadata:
+  name: clin-environments
+  namespace: flux-clin-staging
+spec:
+  interval: 1m
+  timeout: 30s
+  recurseSubmodules: false
+  url: ssh://git@github.com/Ferlab-Ste-Justine/clin-environments.git
+  secretRef:
+    name: root-repo-fluxcd-key
+  ref:
+    branch: master
+  include:
+    - repository:
+        name: common-orchestrations-master
+      toPath: qa/cqdg-orchestrations
+    - repository:
+        name: common-orchestrations-master
+      toPath: staging/cqdg-orchestrations
+---
 apiVersion: kustomize.toolkit.fluxcd.io/v1beta2
 kind: Kustomization
 metadata:
@@ -10,5 +46,5 @@ spec:
   sourceRef:
     kind: GitRepository
     name: clin-environments
-    namespace: flux-system
+    namespace: flux-clin-staging
   prune: true
