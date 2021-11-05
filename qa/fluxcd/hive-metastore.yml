@@ -8,7 +8,7 @@ spec:
   path: "./qa/apps/hive-metastore"
   sourceRef:
     kind: GitRepository
-    name: root-repo
+    name: clin-environments
     namespace: flux-system
   prune: true
   healthChecks:
@@ -24,7 +24,7 @@ metadata:
 spec:
   sourceRef:
     kind: GitRepository
-    name: root-repo
+    name: clin-environments
     namespace: flux-system
   interval: 1m
   update:

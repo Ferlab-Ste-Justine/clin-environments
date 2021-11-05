@@ -8,6 +8,6 @@ spec:
   path: "./staging/apps/spark-core"
   sourceRef:
     kind: GitRepository
-    name: root-repo
+    name: clin-environments
     namespace: flux-system
   prune: true
