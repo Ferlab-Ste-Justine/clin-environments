@@ -3,4 +3,4 @@ kind: Kustomization
 
 resources:
   - flux-qa.yml
-  #- flux-staging.yml
+  - flux-staging.yml
