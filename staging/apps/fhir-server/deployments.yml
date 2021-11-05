@@ -14,7 +14,7 @@ spec:
       imagePullSecrets:
         - name: images-pull
       containers:
-        - image: ferlabcrsj/clin-fhir-server:1.2.2  # {"$imagepolicy": "fluxcd-clin-staging:fhir-server"}
+        - image: ferlabcrsj/clin-fhir-server:1.2.2  # {"$imagepolicy": "flux-clin-staging:fhir-server"}
           name: clin-fhir-server
           resources:
             requests:
