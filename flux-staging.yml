@@ -9,6 +9,6 @@ spec:
   path: "./staging/fluxcd"
   sourceRef:
     kind: GitRepository
-    name: root-repo
+    name: clin-environments
     namespace: flux-system
   prune: true
