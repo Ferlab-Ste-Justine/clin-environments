@@ -1,0 +1,46 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  labels:
+    name: hive-metastore
+  name: hive-metastore
+spec:
+  template:
+    spec:
+      imagePullSecrets:
+        - name: images-pull
+      containers:
+        - name: hive-metastore
+          image: ferlabcrsj/hive-metastore:652b9944cbab17db5ba45d6ed53735ba191adba1 # {"$imagepolicy": "fluxcd-clin-staging:hive-metastore"}
+          env:
+            - name: JDBC_CONNECTION_URL
+              value: jdbc:postgresql://postgres-server-qa:5432/clin_hive_metastore_staging?sslmode=verify-full&amp;sslrootcert=/opt/ca/ca.pem
+            - name: DB_USER
+              valueFrom:
+                secretKeyRef:
+                  name: postgres-qa-hive-metastore-credentials
+                  key: username
+            - name: DB_PASSWORD
+              valueFrom:
+                secretKeyRef:
+                  name: postgres-qa-hive-metastore-credentials
+                  key: password
+            - name: S3_ACCESS_KEY
+              valueFrom:
+                secretKeyRef:
+                  name: s3-hive-metastore-credentials
+                  key: S3_ACCESS_KEY
+            - name: S3_SECRET_KEY
+              valueFrom:
+                secretKeyRef:
+                  name: s3-hive-metastore-credentials
+                  key: S3_SECRET_KEY
+          volumeMounts:
+            - name: ca-certificate
+              mountPath: /opt/ca
+              readOnly: true
+      volumes:
+        - name: ca-certificate
+          secret:
+            secretName: postgres-qa-ca-certificate
+            defaultMode: 0555

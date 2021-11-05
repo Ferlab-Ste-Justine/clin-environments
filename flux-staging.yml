@@ -1,0 +1,14 @@
+apiVersion: kustomize.toolkit.fluxcd.io/v1beta2
+kind: Kustomization
+metadata:
+  name: staging
+  namespace: flux-clin-staging
+spec:
+  serviceAccountName: root-repo
+  interval: 1m
+  path: "./staging/fluxcd"
+  sourceRef:
+    kind: GitRepository
+    name: root-repo
+    namespace: flux-system
+  prune: true

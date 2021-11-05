@@ -1,0 +1,34 @@
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: clin-ferload
+spec:
+  template:
+    spec:
+      imagePullSecrets:
+        - name: images-pull
+      containers:
+        - image: ferlabcrsj/ferload:1.1.1 # {"$imagepolicy": "fluxcd-clin-qa:ferload"}
+          name: clin-ferload
+          env:
+            - name: AWS_ACCESS_KEY
+              valueFrom:
+                secretKeyRef:
+                  name: clin-download-s3-credentials
+                  key: S3_ACCESS_KEY
+            - name: AWS_SECRET_KEY
+              valueFrom:
+                secretKeyRef:
+                  name: clin-download-s3-credentials
+                  key: S3_SECRET_KEY
+            - name: PLAY_HTTP_SECRET_KEY
+              valueFrom:
+                secretKeyRef:
+                  name: clin-ferload-play-secret
+                  key: CLIN_FERLOAD_PLAY_SECRET
+            - name: AUTH_SECRET_KEY
+              valueFrom:
+                secretKeyRef:
+                  name: keycloak-client-acl
+                  key: client-secret

@@ -1,0 +1,13 @@
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: clin-fhir-console
+spec:
+  template:
+    spec:
+      imagePullSecrets:
+        - name: images-pull
+      containers:
+        - image: ferlabcrsj/fhir-console:1.0.1 # {"$imagepolicy": "fluxcd-clin-qa:fhir-console"}
+          name: clin-fhir-console

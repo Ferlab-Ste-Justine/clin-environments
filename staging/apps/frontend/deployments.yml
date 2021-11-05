@@ -1,0 +1,32 @@
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: clin-frontend
+spec:
+  template:
+    spec:
+      imagePullSecrets:
+        - name: images-pull
+      containers:
+        - image: ferlabcrsj/clin-frontend:4.0.8 # {"$imagepolicy": "fluxcd-clin-staging:frontend"}
+          name: clin-frontend
+          env:
+            - name: PATIENT_SERVICE_URL
+              value: https://patient.staging.clin.ferlab.bio/patient
+            - name: VARIANT_SERVICE_URL
+              value: https://variant.staging.clin.ferlab.bio/variant
+            - name: GENE_SERVICE_URL
+              value: https://gene.staging.clin.ferlab.bio/gene
+            - name: META_SERVICE_URL
+              value: https://meta.staging.clin.ferlab.bio/meta
+            - name: FHIR_SERVICE_URL
+              value: https://fhir.staging.clin.ferlab.bio/fhir
+            - name: HPO_SERVICE_URL
+              value: https://hpo.staging.clin.ferlab.bio/hpo
+            - name: ARRANGER_API
+              value: https://data-api.staging.clin.ferlab.bio
+            - name: ARRANGER_PROJECT_ID
+              value: clin_2021_08_27_v3_1_163
+            - name: KEYCLOAK_CONFIG
+              value: "{\\\"realm\\\": \\\"clin\\\", \\\"url\\\": \\\"https://auth.staging.clin.ferlab.bio/auth/\\\", \\\"clientId\\\": \\\"clin-client\\\", \\\"authClientId\\\": \\\"clin-acl\\\"}"

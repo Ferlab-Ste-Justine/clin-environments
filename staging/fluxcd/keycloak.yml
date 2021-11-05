@@ -1,0 +1,73 @@
+apiVersion: kustomize.toolkit.fluxcd.io/v1beta2
+kind: Kustomization
+metadata:
+  name: keycloak
+spec:
+  serviceAccountName: root-repo
+  interval: 2m
+  path: "./staging/apps/keycloak"
+  sourceRef:
+    kind: GitRepository
+    name: root-repo
+    namespace: flux-system
+  prune: true
+  healthChecks:
+    - apiVersion: apps/v1
+      kind: StatefulSet
+      name: keycloak
+      namespace: clin-staging
+---
+apiVersion: image.toolkit.fluxcd.io/v1beta1
+kind: ImageUpdateAutomation
+metadata:
+  name: keycloak
+spec:
+  sourceRef:
+    kind: GitRepository
+    name: root-repo
+    namespace: flux-system
+  interval: 1m
+  update:
+    strategy: Setters
+    path: "./staging/apps/keycloak"
+  git:
+    checkout:
+      ref:
+        branch: master
+    commit:
+      author:
+        name: ferlab-automation
+        email: automation@ferlab.bio
+      messageTemplate: |
+        Auto-release from fluxcd      
+    push:
+      branch: master
+---
+apiVersion: image.toolkit.fluxcd.io/v1beta1
+kind: ImageRepository
+metadata:
+  name: keycloak
+spec:
+  image: index.docker.io/ferlabcrsj/cqdg-keycloak
+  interval: 1m
+  secretRef:
+    name: images-pull
+  accessFrom:
+    namespaceSelectors:
+      - matchLabels:
+          kubernetes.io/metadata.name: fluxcd-clin-staging
+---
+kind: ImagePolicy
+apiVersion: image.toolkit.fluxcd.io/v1beta1
+metadata:
+  name: keycloak
+spec:
+  imageRepositoryRef:
+    name: keycloak
+    namespace: fluxcd-clin-staging
+  filterTags:
+    pattern: '^[a-fA-F0-9]+-(?P<ts>.*)'
+    extract: '$ts'
+  policy:
+     numerical:
+      order: asc

@@ -1,0 +1,17 @@
+---
+apiVersion: kustomize.config.k8s.io/v1beta1
+kind: Kustomization
+
+namespace: clin-qa
+
+resources:
+  - ../../../common/fhir-server
+  - ingresses.yml
+  - backups
+
+patchesStrategicMerge:
+  - configmaps.yml
+  - deployments.yml
+
+commonLabels:
+  group: clin-fhir-server

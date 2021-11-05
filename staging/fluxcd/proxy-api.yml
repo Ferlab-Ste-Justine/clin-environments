@@ -1,0 +1,190 @@
+apiVersion: kustomize.toolkit.fluxcd.io/v1beta2
+kind: Kustomization
+metadata:
+  name: proxy-api
+spec:
+  serviceAccountName: root-repo
+  interval: 2m
+  path: "./staging/apps/proxy-api"
+  sourceRef:
+    kind: GitRepository
+    name: root-repo
+    namespace: flux-system
+  prune: true
+  healthChecks:
+    - apiVersion: apps/v1
+      kind: Deployment
+      name: clin-proxy-api-variant
+      namespace: clin-staging
+    - apiVersion: apps/v1
+      kind: Deployment
+      name: clin-proxy-api-patient
+      namespace: clin-staging
+    - apiVersion: apps/v1
+      kind: Deployment
+      name: clin-proxy-api-meta
+      namespace: clin-staging
+    - apiVersion: apps/v1
+      kind: Deployment
+      name: clin-proxy-api-gene
+      namespace: clin-staging
+    - apiVersion: apps/v1
+      kind: Deployment
+      name: clin-proxy-api-hpo
+      namespace: clin-staging
+---
+apiVersion: image.toolkit.fluxcd.io/v1beta1
+kind: ImageUpdateAutomation
+metadata:
+  name: clin-proxy
+spec:
+  sourceRef:
+    kind: GitRepository
+    name: root-repo
+  interval: 1m
+  update:
+    strategy: Setters
+    path: "./staging/apps/proxy-api"
+    namespace: flux-system
+  git:
+    checkout:
+      ref:
+        branch: master
+    commit:
+      author:
+        name: ferlab-automation
+        email: automation@ferlab.bio
+      messageTemplate: |
+        Auto-release from fluxcd      
+    push:
+      branch: master
+---
+apiVersion: image.toolkit.fluxcd.io/v1beta1
+kind: ImageRepository
+metadata:
+  name: clin-proxy-api-variant-service
+spec:
+  image: index.docker.io/ferlabcrsj/clin-proxy-api-variant-service
+  interval: 1m
+  secretRef:
+    name: images-pull
+  accessFrom:
+    namespaceSelectors:
+      - matchLabels:
+          kubernetes.io/metadata.name: fluxcd-clin-staging
+---
+kind: ImagePolicy
+apiVersion: image.toolkit.fluxcd.io/v1beta1
+metadata:
+  name: clin-proxy-api-variant-service
+spec:
+  imageRepositoryRef:
+    name: clin-proxy-api-variant-service
+    namespace: fluxcd-clin-staging
+  policy:
+    semver:
+      range: '>=2.0.0 <3.0.0'
+---
+apiVersion: image.toolkit.fluxcd.io/v1beta1
+kind: ImageRepository
+metadata:
+  name: clin-proxy-api-patient-service
+spec:
+  image: index.docker.io/ferlabcrsj/clin-proxy-api-patient-service
+  interval: 1m
+  secretRef:
+    name: images-pull
+  accessFrom:
+    namespaceSelectors:
+      - matchLabels:
+          kubernetes.io/metadata.name: fluxcd-clin-staging
+---
+kind: ImagePolicy
+apiVersion: image.toolkit.fluxcd.io/v1beta1
+metadata:
+  name: clin-proxy-api-patient-service
+spec:
+  imageRepositoryRef:
+    name: clin-proxy-api-patient-service
+    namespace: fluxcd-clin-staging
+  policy:
+    semver:
+      range: '>=2.0.0 <3.0.0'
+---
+apiVersion: image.toolkit.fluxcd.io/v1beta1
+kind: ImageRepository
+metadata:
+  name: clin-proxy-api-meta-service
+spec:
+  image: index.docker.io/ferlabcrsj/clin-proxy-api-meta-service
+  interval: 1m
+  secretRef:
+    name: images-pull
+  accessFrom:
+    namespaceSelectors:
+      - matchLabels:
+          kubernetes.io/metadata.name: fluxcd-clin-staging
+---
+kind: ImagePolicy
+apiVersion: image.toolkit.fluxcd.io/v1beta1
+metadata:
+  name: clin-proxy-api-meta-service
+spec:
+  imageRepositoryRef:
+    name: clin-proxy-api-meta-service
+    namespace: fluxcd-clin-staging
+  policy:
+    semver:
+      range: '>=2.0.0 <3.0.0'
+---
+apiVersion: image.toolkit.fluxcd.io/v1beta1
+kind: ImageRepository
+metadata:
+  name: clin-proxy-api-gene-service
+spec:
+  image: index.docker.io/ferlabcrsj/clin-proxy-api-gene-service
+  interval: 1m
+  secretRef:
+    name: images-pull
+  accessFrom:
+    namespaceSelectors:
+      - matchLabels:
+          kubernetes.io/metadata.name: fluxcd-clin-staging
+---
+kind: ImagePolicy
+apiVersion: image.toolkit.fluxcd.io/v1beta1
+metadata:
+  name: clin-proxy-api-gene-service
+spec:
+  imageRepositoryRef:
+    name: clin-proxy-api-gene-service
+    namespace: fluxcd-clin-staging
+  policy:
+    semver:
+      range: '>=2.0.0 <3.0.0'
+---
+apiVersion: image.toolkit.fluxcd.io/v1beta1
+kind: ImageRepository
+metadata:
+  name: clin-proxy-api-hpo-service
+spec:
+  image: index.docker.io/ferlabcrsj/clin-proxy-api-hpo-service
+  interval: 1m
+  secretRef:
+    name: images-pull
+  accessFrom:
+    namespaceSelectors:
+      - matchLabels:
+          kubernetes.io/metadata.name: fluxcd-clin-staging
+---
+kind: ImagePolicy
+apiVersion: image.toolkit.fluxcd.io/v1beta1
+metadata:
+  name: clin-proxy-api-hpo-service
+spec:
+  imageRepositoryRef:
+    name: clin-proxy-api-hpo-service
+    namespace: fluxcd-clin-staging
+  policy:
+    semver:
+      range: '>=2.0.0 <3.0.0'

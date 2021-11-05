@@ -3,8 +3,16 @@ name: Validate Manifests
 on: [push]
 
 jobs:
-  Validate-qa:
-    name: Validate Qa Manifests
+  validate-fluxcd:
+    name: Validate Root Fluxcd Manifests
+    runs-on: ubuntu-18.04
+    container: fluxcd/flux:1.21.0
+    steps:
+    - uses: actions/checkout@v2
+    - name: Kustomize Build
+      run: kustomize build .
+  Validate-qa-fluxcd:
+    name: Validate Qa Fluxcd Manifests
     runs-on: ubuntu-18.04
     container: fluxcd/flux:1.21.0
     steps:
@@ -14,21 +22,21 @@ jobs:
       working-directory: qa
     - name: Kustomize Build
       run: kustomize build .
+      working-directory: qa/fluxcd
+  Validate-qa-apps:
+    name: Validate Qa App Manifests
+    runs-on: ubuntu-18.04
+    container: fluxcd/flux:1.21.0
+    steps:
+    - uses: actions/checkout@v2
+    - name: Get git submodules
+      run: git submodule init && git submodule update
       working-directory: qa
-  Validate-dev:
-    name: Validate Dev Manifests
-    runs-on: ubuntu-18.04
-    container: fluxcd/flux:1.21.0
-    steps:
-    - uses: actions/checkout@v2
-    - name: Get git submodules
-      run: git submodule init && git submodule update
-      working-directory: dev
     - name: Kustomize Build
-      run: kustomize build .
-      working-directory: dev
-  Validate-stating:
-    name: Validate Staging Manifests
+      run: ./validate_manifests.sh
+      working-directory: qa/apps
+  Validate-staging-fluxcd:
+    name: Validate Staging Fluxcd Manifests
     runs-on: ubuntu-18.04
     container: fluxcd/flux:1.21.0
     steps:
@@ -38,4 +46,16 @@ jobs:
       working-directory: staging
     - name: Kustomize Build
       run: kustomize build .
+      working-directory: staging/fluxcd
+  Validate-staging-apps:
+    name: Validate Staging App Manifests
+    runs-on: ubuntu-18.04
+    container: fluxcd/flux:1.21.0
+    steps:
+    - uses: actions/checkout@v2
+    - name: Get git submodules
+      run: git submodule init && git submodule update
       working-directory: staging
+    - name: Kustomize Build
+      run: ./validate_manifests.sh
+      working-directory: staging/apps
