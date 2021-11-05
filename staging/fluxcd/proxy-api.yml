@@ -71,7 +71,7 @@ spec:
   accessFrom:
     namespaceSelectors:
       - matchLabels:
-          kubernetes.io/metadata.name: fluxcd-clin-staging
+          kubernetes.io/metadata.name: flux-clin-staging
 ---
 kind: ImagePolicy
 apiVersion: image.toolkit.fluxcd.io/v1beta1
@@ -80,7 +80,7 @@ metadata:
 spec:
   imageRepositoryRef:
     name: clin-proxy-api-variant-service
-    namespace: fluxcd-clin-staging
+    namespace: flux-clin-staging
   policy:
     semver:
       range: '>=2.0.0 <3.0.0'
@@ -97,7 +97,7 @@ spec:
   accessFrom:
     namespaceSelectors:
       - matchLabels:
-          kubernetes.io/metadata.name: fluxcd-clin-staging
+          kubernetes.io/metadata.name: flux-clin-staging
 ---
 kind: ImagePolicy
 apiVersion: image.toolkit.fluxcd.io/v1beta1
@@ -106,7 +106,7 @@ metadata:
 spec:
   imageRepositoryRef:
     name: clin-proxy-api-patient-service
-    namespace: fluxcd-clin-staging
+    namespace: flux-clin-staging
   policy:
     semver:
       range: '>=2.0.0 <3.0.0'
@@ -123,7 +123,7 @@ spec:
   accessFrom:
     namespaceSelectors:
       - matchLabels:
-          kubernetes.io/metadata.name: fluxcd-clin-staging
+          kubernetes.io/metadata.name: flux-clin-staging
 ---
 kind: ImagePolicy
 apiVersion: image.toolkit.fluxcd.io/v1beta1
@@ -132,7 +132,7 @@ metadata:
 spec:
   imageRepositoryRef:
     name: clin-proxy-api-meta-service
-    namespace: fluxcd-clin-staging
+    namespace: flux-clin-staging
   policy:
     semver:
       range: '>=2.0.0 <3.0.0'
@@ -149,7 +149,7 @@ spec:
   accessFrom:
     namespaceSelectors:
       - matchLabels:
-          kubernetes.io/metadata.name: fluxcd-clin-staging
+          kubernetes.io/metadata.name: flux-clin-staging
 ---
 kind: ImagePolicy
 apiVersion: image.toolkit.fluxcd.io/v1beta1
@@ -158,7 +158,7 @@ metadata:
 spec:
   imageRepositoryRef:
     name: clin-proxy-api-gene-service
-    namespace: fluxcd-clin-staging
+    namespace: flux-clin-staging
   policy:
     semver:
       range: '>=2.0.0 <3.0.0'
@@ -175,7 +175,7 @@ spec:
   accessFrom:
     namespaceSelectors:
       - matchLabels:
-          kubernetes.io/metadata.name: fluxcd-clin-staging
+          kubernetes.io/metadata.name: flux-clin-staging
 ---
 kind: ImagePolicy
 apiVersion: image.toolkit.fluxcd.io/v1beta1
@@ -184,7 +184,7 @@ metadata:
 spec:
   imageRepositoryRef:
     name: clin-proxy-api-hpo-service
-    namespace: fluxcd-clin-staging
+    namespace: flux-clin-staging
   policy:
     semver:
       range: '>=2.0.0 <3.0.0'
