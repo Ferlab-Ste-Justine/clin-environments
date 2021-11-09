@@ -47,7 +47,7 @@ kind: ImageRepository
 metadata:
   name: frontend
 spec:
-  image: index.docker.io/ferlabcrsj/frontend
+  image: index.docker.io/ferlabcrsj/clin-frontend
   interval: 1m
   secretRef:
     name: images-pull
