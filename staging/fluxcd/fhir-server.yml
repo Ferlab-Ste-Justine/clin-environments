@@ -49,7 +49,7 @@ kind: ImageRepository
 metadata:
   name: fhir-server
 spec:
-  image: index.docker.io/ferlabcrsj/fhir-server
+  image: index.docker.io/ferlabcrsj/clin-fhir-server
   interval: 1m
   secretRef:
     name: images-pull
