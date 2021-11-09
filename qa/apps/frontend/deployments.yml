@@ -1,4 +1,3 @@
----
 apiVersion: apps/v1
 kind: Deployment
 metadata:
@@ -9,7 +8,7 @@ spec:
       imagePullSecrets:
         - name: images-pull
       containers:
-        - image: ferlabcrsj/clin-frontend:b9d0f1e9714c719f31abacfdf9cb818779bbf15e # {"$imagepolicy": "flux-clin-qa:frontend"}
+        - image: index.docker.io/ferlabcrsj/clin-frontend:b00943a1a9492909fd30fa28be3abbf7360dd3e7-1636471422 # {"$imagepolicy": "flux-clin-qa:frontend"}
           name: clin-frontend
           env:
             - name: PATIENT_SERVICE_URL
