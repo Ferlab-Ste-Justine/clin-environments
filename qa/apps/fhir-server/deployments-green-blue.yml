@@ -11,6 +11,9 @@ spec:
     matchLabels:
       app: clin-fhir-server-green
   template:
+    metadata:
+      labels:
+        app: clin-fhir-server-green
     spec:
       volumes:
         - name: postgres-ca-certificate
@@ -65,6 +68,9 @@ spec:
     matchLabels:
       app: clin-fhir-server-blue
   template:
+    metadata:
+      labels:
+        app: clin-fhir-server-blue
     spec:
       volumes:
         - name: postgres-ca-certificate
