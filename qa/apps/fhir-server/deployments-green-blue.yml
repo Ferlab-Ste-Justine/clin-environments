@@ -1,0 +1,108 @@
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  labels:
+    app: clin-fhir-server-green
+  name: clin-fhir-server-green
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: clin-fhir-server-green
+  template:
+    spec:
+      volumes:
+        - name: postgres-ca-certificate
+          secret:
+            secretName: postgres-qa-ca-certificate
+            defaultMode: 0555
+      imagePullSecrets:
+        - name: images-pull
+      containers:
+        - image: index.docker.io/ferlabcrsj/clin-fhir-server:75c3fb7d1d732a0a32cfa42736c4b4d17662d305-1636034617 # {"$imagepolicy": "flux-clin-qa:fhir-server"}
+          name: clin-fhir-server-green
+          resources:
+            requests:
+              memory: "2048Mi"
+              cpu: "1.00"
+            limits:
+              memory: "4096Mi"
+              cpu: "2.00"
+          env:
+            - name: SPRING_DATASOURCE_USERNAME
+              valueFrom:
+                secretKeyRef:
+                  name: postgres-qa-clin-fhir-credentials
+                  key: username
+            - name: SPRING_DATASOURCE_PASSWORD
+              valueFrom:
+                secretKeyRef:
+                  name: postgres-qa-clin-fhir-credentials
+                  key: password
+            - name: BIO_AUTH_AUTHORIZATION_CLIENT_SECRET
+              valueFrom:
+                secretKeyRef:
+                  name: keycloak-client-acl
+                  key: client-secret
+          envFrom:
+            - configMapRef:
+                name: clin-fhir-server-green
+          volumeMounts:
+            - name: postgres-ca-certificate
+              mountPath: /opt/ca
+              readOnly: true
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  labels:
+    app: clin-fhir-server-blue
+  name: clin-fhir-server-blue
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: clin-fhir-server-blue
+  template:
+    spec:
+      volumes:
+        - name: postgres-ca-certificate
+          secret:
+            secretName: postgres-qa-ca-certificate
+            defaultMode: 0555
+      imagePullSecrets:
+        - name: images-pull
+      containers:
+        - image: index.docker.io/ferlabcrsj/clin-fhir-server:75c3fb7d1d732a0a32cfa42736c4b4d17662d305-1636034617 # {"$imagepolicy": "flux-clin-qa:fhir-server"}
+          name: clin-fhir-server-blue
+          resources:
+            requests:
+              memory: "2048Mi"
+              cpu: "1.00"
+            limits:
+              memory: "4096Mi"
+              cpu: "2.00"
+          env:
+            - name: SPRING_DATASOURCE_USERNAME
+              valueFrom:
+                secretKeyRef:
+                  name: postgres-qa-clin-fhir-credentials
+                  key: username
+            - name: SPRING_DATASOURCE_PASSWORD
+              valueFrom:
+                secretKeyRef:
+                  name: postgres-qa-clin-fhir-credentials
+                  key: password
+            - name: BIO_AUTH_AUTHORIZATION_CLIENT_SECRET
+              valueFrom:
+                secretKeyRef:
+                  name: keycloak-client-acl
+                  key: client-secret
+          envFrom:
+            - configMapRef:
+                name: clin-fhir-server-blue
+          volumeMounts:
+            - name: postgres-ca-certificate
+              mountPath: /opt/ca
+              readOnly: true

@@ -8,10 +8,14 @@ resources:
   - ../../../common/fhir-server
   - ingresses.yml
   - backups
+  - configmaps-green-blue
+  - deployments-green-blue.yml
+  - services-green-blue.yml
 
 patchesStrategicMerge:
-  - configmaps.yml
-  - deployments.yml
+  - configmaps-override.yml
+  - deployments-override.yml
+  - service-override.yml
 
 commonLabels:
   group: clin-fhir-server
