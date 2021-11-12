@@ -11,7 +11,7 @@ spec:
     protocol: TCP
     targetPort: 8080
   selector:
-    app: clin-fhir-server-blue
+    app: clin-fhir-server-green
 ---
 apiVersion: v1
 kind: Service
