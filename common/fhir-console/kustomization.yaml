@@ -5,4 +5,3 @@ kind: Kustomization
 resources:
   - deployments.yml
   - services.yml
-  - configs.yml

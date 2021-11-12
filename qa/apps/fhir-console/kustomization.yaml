@@ -10,5 +10,4 @@ resources:
   - configmaps
 
 patchesStrategicMerge:
-  - configs.yml
   - deployments.yml
