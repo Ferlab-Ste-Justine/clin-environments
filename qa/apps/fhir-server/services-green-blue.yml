@@ -1,0 +1,28 @@
+---
+apiVersion: v1
+kind: Service
+metadata:
+  labels:
+    app: clin-fhir-server-green
+  name: clin-fhir-server-green
+spec:
+  ports:
+  - port: 8080
+    protocol: TCP
+    targetPort: 8080
+  selector:
+    app: clin-fhir-server-blue
+---
+apiVersion: v1
+kind: Service
+metadata:
+  labels:
+    app: clin-fhir-server-blue
+  name: clin-fhir-server-blue
+spec:
+  ports:
+  - port: 8080
+    protocol: TCP
+    targetPort: 8080
+  selector:
+    app: clin-fhir-server-blue
