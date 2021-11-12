@@ -16,6 +16,8 @@ spec:
     - patient.qa.clin.ferlab.bio
     - hpo.qa.clin.ferlab.bio
     - fhir.qa.clin.ferlab.bio
+    - fhir-green.qa.clin.ferlab.bio
+    - fhir-blue.qa.clin.ferlab.bio
     - fhir-console.qa.clin.ferlab.bio
     - ferload.qa.clin.ferlab.bio
     - notebook.qa.clin.ferlab.bio
