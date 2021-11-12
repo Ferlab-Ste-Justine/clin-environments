@@ -7,7 +7,7 @@ namespace: clin-staging
 resources:
   - ../../../common/fhir-console
   - ingresses.yml
+  - configmaps
 
 patchesStrategicMerge:
-  - configs.yml
   - deployments.yml
