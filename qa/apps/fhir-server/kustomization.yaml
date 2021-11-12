@@ -8,7 +8,7 @@ resources:
   - ../../../common/fhir-server
   - ingresses.yml
   - backups
-  - configmaps-green-blue.yml
+  - configmaps-green-blue
   - deployments-green-blue.yml
   - services-green-blue.yml
 

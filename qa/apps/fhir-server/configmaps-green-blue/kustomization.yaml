@@ -16,10 +16,6 @@ configMapGenerator:
       - HAPI_FHIR_GRAPHQL_ENABLED=false
       - HAPI_FHIR_ALLOW_MULTIPLE_DELETE=true
       - JAVA_OPTS="-server -Xmx2048m -Djava.net.preferIPv4Stack=true -Djava.awt.headless=true -XX:+UseContainerSupport"
----
-apiVersion: kustomize.config.k8s.io/v1beta1
-kind: Kustomization
-configMapGenerator:
   - name: clin-fhir-server-blue
     literals:
       - BIO_ELASTICSEARCH_HOST=elasticsearch-workers
