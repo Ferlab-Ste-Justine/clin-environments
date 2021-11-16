@@ -9,4 +9,3 @@ data:
   HAPI_FHIR_SERVER_ADDRESS: https://fhir.qa.clin.ferlab.bio/fhir/
   HAPI_FHIR_ALLOW_MULTIPLE_DELETE: "true"
   JAVA_OPTS: "-server -Xmx2048m -Djava.net.preferIPv4Stack=true -Djava.awt.headless=true -XX:+UseContainerSupport"
-  BIO_AUTH_AUTHORIZATION_ENABLED: "false"
