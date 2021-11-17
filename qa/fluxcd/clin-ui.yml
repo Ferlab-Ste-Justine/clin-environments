@@ -22,7 +22,6 @@ kind: ImageUpdateAutomation
 metadata:
   name: clin-ui
 spec:
-  suspend: true
   sourceRef:
     kind: GitRepository
     name: clin-environments
