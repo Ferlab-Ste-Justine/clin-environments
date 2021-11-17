@@ -6,6 +6,7 @@ namespace: flux-clin-qa
 resources:
   - arranger.yml
   - certificate.yml
+  - clin-ui.yml
   - elasticsearch.yml
   - ferload.yml
   - fhir-console.yml
