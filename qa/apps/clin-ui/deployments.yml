@@ -1,0 +1,21 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  labels:
+    app: clin-ui
+  name: clin-ui
+spec:
+  replicas: 2
+  selector:
+    matchLabels:
+      app: clin-ui
+  template:
+    metadata:
+      labels:
+        app: clin-ui
+    spec:
+      imagePullSecrets:
+        - name: images-pull
+      containers:
+        - image: index.docker.io/ferlabcrsj/clin-ui:qa-baebe263a40ff1698d1628fd7a346c472105b62a-1637172752 # {"$imagepolicy": "flux-clin-qa:clin-ui"}
+          name: clin-ui

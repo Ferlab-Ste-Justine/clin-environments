@@ -1,11 +1,11 @@
 apiVersion: kustomize.toolkit.fluxcd.io/v1beta2
 kind: Kustomization
 metadata:
-  name: frontend
+  name: clin-ui
 spec:
   serviceAccountName: flux
   interval: 1m
-  path: "./qa/apps/frontend"
+  path: "./qa/apps/clin-ui"
   sourceRef:
     kind: GitRepository
     name: clin-environments
@@ -14,13 +14,13 @@ spec:
   healthChecks:
     - apiVersion: apps/v1
       kind: Deployment
-      name: clin-frontend
+      name: clin-ui
       namespace: clin-qa
 ---
 apiVersion: image.toolkit.fluxcd.io/v1beta1
 kind: ImageUpdateAutomation
 metadata:
-  name: frontend
+  name: clin-ui
 spec:
   suspend: true
   sourceRef:
@@ -29,7 +29,7 @@ spec:
   interval: 1m
   update:
     strategy: Setters
-    path: "./qa/apps/frontend"
+    path: "./qa/apps/clin-ui"
   git:
     checkout:
       ref:
@@ -46,9 +46,9 @@ spec:
 apiVersion: image.toolkit.fluxcd.io/v1beta1
 kind: ImageRepository
 metadata:
-  name: frontend
+  name: clin-ui
 spec:
-  image: index.docker.io/ferlabcrsj/clin-frontend
+  image: index.docker.io/ferlabcrsj/clin-ui
   interval: 1m
   secretRef:
     name: images-pull
@@ -60,13 +60,13 @@ spec:
 kind: ImagePolicy
 apiVersion: image.toolkit.fluxcd.io/v1beta1
 metadata:
-  name: frontend
+  name: clin-ui
 spec:
   imageRepositoryRef:
-    name: frontend
+    name: clin-ui
     namespace: flux-clin-qa
   filterTags:
-    pattern: '^[a-fA-F0-9]+-(?P<ts>.*)'
+    pattern: '^qa-[a-fA-F0-9]+-(?P<ts>.*)'
     extract: '$ts'
   policy:
      numerical:
