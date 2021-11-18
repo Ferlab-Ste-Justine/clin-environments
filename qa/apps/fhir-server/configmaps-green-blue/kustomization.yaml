@@ -12,7 +12,7 @@ configMapGenerator:
       - BIO_AUTH_ENABLED=true
       - BIO_AUTH_AUTHORIZATION_ENABLED=true
       - BIO_AUTH_DISABLE_SSL_VALIDATION=false
-      - HAPI_FHIR_SERVER_ADDRESS=https://fhir-blue.qa.clin.ferlab.bio/fhir/
+      - HAPI_FHIR_SERVER_ADDRESS=https://fhir-green.qa.clin.ferlab.bio/fhir/
       - HAPI_FHIR_GRAPHQL_ENABLED=true
       - HAPI_FHIR_ALLOW_MULTIPLE_DELETE=true
       - JAVA_OPTS="-server -Xmx2048m -Djava.net.preferIPv4Stack=true -Djava.awt.headless=true -XX:+UseContainerSupport"
@@ -28,7 +28,7 @@ configMapGenerator:
       - BIO_AUTH_ENABLED=true
       - BIO_AUTH_AUTHORIZATION_ENABLED=true
       - BIO_AUTH_DISABLE_SSL_VALIDATION=false
-      - HAPI_FHIR_SERVER_ADDRESS=https://fhir-green.qa.clin.ferlab.bio/fhir/
+      - HAPI_FHIR_SERVER_ADDRESS=https://fhir-blue.qa.clin.ferlab.bio/fhir/
       - HAPI_FHIR_GRAPHQL_ENABLED=true
       - HAPI_FHIR_ALLOW_MULTIPLE_DELETE=true
       - JAVA_OPTS="-server -Xmx2048m -Djava.net.preferIPv4Stack=true -Djava.awt.headless=true -XX:+UseContainerSupport"
