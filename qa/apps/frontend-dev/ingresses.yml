@@ -26,3 +26,7 @@ spec:
           backend:
             serviceName: clin-ui
             servicePort: 80
+        - path: /clinui
+          backend:
+            serviceName: clin-ui
+            servicePort: 80
