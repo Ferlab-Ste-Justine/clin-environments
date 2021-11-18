@@ -9,6 +9,7 @@ spec:
     size: 4096
   dnsNames:
     - qa.clin.ferlab.bio
+    - dev.qa.clin.ferlab.bio
     - auth.qa.clin.ferlab.bio
     - gene.qa.clin.ferlab.bio
     - meta.qa.clin.ferlab.bio

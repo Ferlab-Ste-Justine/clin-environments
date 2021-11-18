@@ -1,11 +1,11 @@
 apiVersion: kustomize.toolkit.fluxcd.io/v1beta2
 kind: Kustomization
 metadata:
-  name: frontend
+  name: frontend-dev
 spec:
   serviceAccountName: flux
   interval: 1m
-  path: "./qa/apps/frontend"
+  path: "./qa/apps/frontend-dev"
   sourceRef:
     kind: GitRepository
     name: clin-environments
@@ -14,13 +14,13 @@ spec:
   healthChecks:
     - apiVersion: apps/v1
       kind: Deployment
-      name: clin-frontend
+      name: clin-frontend-dev
       namespace: clin-qa
 ---
 apiVersion: image.toolkit.fluxcd.io/v1beta1
 kind: ImageUpdateAutomation
 metadata:
-  name: frontend
+  name: frontend-dev
 spec:
   suspend: true
   sourceRef:
@@ -29,7 +29,7 @@ spec:
   interval: 1m
   update:
     strategy: Setters
-    path: "./qa/apps/frontend"
+    path: "./qa/apps/frontend-dev"
   git:
     checkout:
       ref:
@@ -42,32 +42,3 @@ spec:
         Auto-release from fluxcd      
     push:
       branch: master
----
-apiVersion: image.toolkit.fluxcd.io/v1beta1
-kind: ImageRepository
-metadata:
-  name: frontend
-spec:
-  image: index.docker.io/ferlabcrsj/clin-frontend
-  interval: 1m
-  secretRef:
-    name: images-pull
-  accessFrom:
-    namespaceSelectors:
-      - matchLabels:
-          kubernetes.io/metadata.name: flux-clin-qa
----
-kind: ImagePolicy
-apiVersion: image.toolkit.fluxcd.io/v1beta1
-metadata:
-  name: frontend
-spec:
-  imageRepositoryRef:
-    name: frontend
-    namespace: flux-clin-qa
-  filterTags:
-    pattern: '^[a-fA-F0-9]+-(?P<ts>.*)'
-    extract: '$ts'
-  policy:
-     numerical:
-      order: asc
