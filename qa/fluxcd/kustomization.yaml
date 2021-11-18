@@ -12,6 +12,7 @@ resources:
   - fhir-console.yml
   - fhir-server.yml
   - frontend.yml
+  - frontend-dev.yml
   - git-autosync.yml
   - hive-metastore.yml
   - keycloak.yml
