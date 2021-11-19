@@ -3,7 +3,7 @@
 set -e
 
 for DIR in $(ls -d */ | cut -f1 -d'/'); do
-  if [ "$DIR" = "spark-jobs" ]; then
+  if [ "$DIR" = "spark-jobs" ] || [ "$DIR" = "cleanup-jobs" ]; then
     continue
   fi
   echo "Verifying manifests in $DIR"

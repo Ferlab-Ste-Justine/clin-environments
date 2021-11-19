@@ -1,0 +1,35 @@
+---
+apiVersion: batch/v1
+kind: Job
+metadata:
+  name: delete-s3-files-$COLOR
+spec:
+  template:
+    spec:
+      containers:
+        - name: delete-s3-files-$COLOR
+          image: amazon/aws-cli
+          env:
+            - name: AWS_ACCESS_KEY_ID
+              valueFrom:
+                secretKeyRef:
+                  name: clin-download-s3-credentials
+                  key: S3_ACCESS_KEY
+            - name: AWS_SECRET_ACCESS_KEY
+              valueFrom:
+                secretKeyRef:
+                  name: clin-download-s3-credentials
+                  key: S3_SECRET_KEY
+            - name: AWS_DEFAULT_REGION
+              value: regionone
+          args:
+            - s3
+            - --endpoint-url
+            - https://s3.ops.cqdg.ferlab.bio
+            - rm
+            - s3://clin-qa-app-clin-download/$COLOR/
+            - --recursive
+      restartPolicy: Never
+  backoffLimit: 4
+
+
