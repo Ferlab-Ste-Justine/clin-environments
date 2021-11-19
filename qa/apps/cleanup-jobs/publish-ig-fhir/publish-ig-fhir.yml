@@ -9,17 +9,14 @@ spec:
       containers:
         - name: publish-ig-fhir-$COLOR
           image: ferlabcrsj/clin-fhir
-          command:
-            - sleep
-            - infinity
           env:
             - name: OAUTH_CLIENT_ID
               value: clin-system
             - name: OAUTH_CLIENT_SECRET
               valueFrom:
                 secretKeyRef:
-                  name: keycloak-clin-system
-                  key: client-secret
+                  name: keycloak-clin-system-client-credentials
+                  key: KEYCLOAK_CLIENT_SECRET
             - name: OAUTH_UMA_AUDIENCE
               value: clin-acl
             - name: OAUTH_URL
