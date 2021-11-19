@@ -1,0 +1,20 @@
+---
+apiVersion: batch/v1
+kind: Job
+metadata:
+  name: delete-es-indices-$COLOR
+spec:
+  template:
+    spec:
+      containers:
+        - name: delete-es-indices-$COLOR
+          image: curlimages/curl
+          args:
+            - -f
+            -  -X
+            - DELETE
+            - http://elasticsearch-workers:9200/prescriptions-$COLOR?ignore_unavailable=true
+      restartPolicy: Never
+  backoffLimit: 4
+
+

@@ -2,12 +2,12 @@
 apiVersion: batch/v1
 kind: Job
 metadata:
-  name: delete-tables-blue
+  name: delete-tables-$COLOR
 spec:
   template:
     spec:
       containers:
-        - name: delete-tables-blue
+        - name: delete-tables-$COLOR
           image: ferlabcrsj/postgres-backup:9bb43092f76e95f17cd09f03a27c65d84112a3cd
           env:
             - name: PGUSER
@@ -32,7 +32,7 @@ spec:
           command:
             - psql
             - -d
-            - clin_fhir_qa_blue
+            - clin_fhir_qa_$COLOR
             - -c
             - "DO $$$DECLARE
                    r RECORD;
