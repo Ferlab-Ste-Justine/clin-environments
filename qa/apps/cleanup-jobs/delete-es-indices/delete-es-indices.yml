@@ -11,9 +11,9 @@ spec:
           image: curlimages/curl
           args:
             - -f
-            -  -X
+            - -X
             - DELETE
-            - http://elasticsearch-workers:9200/prescriptions-$COLOR?ignore_unavailable=true
+            - http://elasticsearch-workers:9200/prescriptions-$COLOR,patients-$COLOR?ignore_unavailable=true
       restartPolicy: Never
   backoffLimit: 4
 
