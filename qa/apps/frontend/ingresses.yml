@@ -18,3 +18,15 @@ spec:
           backend:
             serviceName: clin-frontend
             servicePort: 80
+        - path: /search
+          backend:
+            serviceName: clin-ui
+            servicePort: 80
+        - path: /variant
+          backend:
+            serviceName: clin-ui
+            servicePort: 80
+        - path: /clinui
+          backend:
+            serviceName: clin-ui
+            servicePort: 80
