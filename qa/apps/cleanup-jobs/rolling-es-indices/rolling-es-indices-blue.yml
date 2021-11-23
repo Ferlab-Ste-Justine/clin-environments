@@ -1,0 +1,32 @@
+---
+apiVersion: batch/v1
+kind: Job
+metadata:
+  name: rolling-es-indices-blue
+spec:
+  template:
+    spec:
+      containers:
+        - name: rolling-es-indices-blue
+          image: curlimages/curl
+          args:
+            - -f
+            - -X
+            - POST
+            - http://elasticsearch-workers:9200/_aliases
+            - -H
+            - 'Content-Type: application/json'
+            - -d
+            - '{
+                  "actions": [
+                    {"add": { "index": "patients-blue", "alias": "clin-qa-patients"}},
+                    {"add": { "index": "prescriptions-blue", "alias": "clin-qa-prescriptions"}},
+                    {"remove": { "index": "patients-green", "alias": "clin-qa-patients"}},
+                    {"remove": { "index": "prescriptions-green", "alias": "clin-qa-prescriptions"}}
+                  ]
+                }'
+
+      restartPolicy: Never
+  backoffLimit: 4
+
+
