@@ -1,0 +1,53 @@
+---
+apiVersion: batch/v1
+kind: Job
+metadata:
+  name: file-import-$COLOR
+spec:
+  template:
+    spec:
+      containers:
+        - name: file-import-$COLOR
+          image: ferlabcrsj/clin-pipelines
+          args:
+            - bio.ferlab.clin.etl.FileImport
+            - 201106_A00516_0169_AHFM3HDSXY
+          env:
+            - name: FHIR_SERVER_URL
+              value: https://fhir-$COLOR.qa.clin.ferlab.bio/fhir
+            - name: KEYCLOAK_URL
+              value: https://auth.qa.clin.ferlab.bio/auth
+            - name: KEYCLOAK_CLIENT_KEY
+              value: clin-system
+            - name: KEYCLOAK_CLIENT_SECRET
+              valueFrom:
+                secretKeyRef:
+                  name: keycloak-clin-system-client-credentials
+                  key: KEYCLOAK_CLIENT_SECRET
+            - name: KEYCLOAK_AUTHORIZATION_AUDIENCE
+              value: clin-acl
+            - name: AWS_ACCESS_KEY
+              valueFrom:
+                secretKeyRef:
+                  name: s3-files-processing-credentials
+                  key: S3_ACCESS_KEY
+            - name: AWS_SECRET_KEY
+              valueFrom:
+                secretKeyRef:
+                  name: s3-files-processing-credentials
+                  key: S3_SECRET_KEY
+            - name: AWS_ENDPOINT
+              value: https://s3.ops.cqdg.ferlab.bio
+            - name: AWS_DEFAULT_REGION
+              value: regionone
+            - name: AWS_BUCKET_NAME
+              value: clin-qa-app-files-import
+            - name: AWS_PREFIX
+              value: $COLOR
+            - name: AWS_OUTPUT_BUCKET_NAME
+              value: clin-qa-app-clin-download
+
+      restartPolicy: Never
+  backoffLimit: 4
+
+
