@@ -2,7 +2,7 @@
 apiVersion: batch/v1
 kind: Job
 metadata:
-  name: raw-normalized-vcf-etl
+  name: raw-vcf-etl
 spec:
   backoffLimit: 4
   template:
@@ -12,7 +12,7 @@ spec:
           args:
             - config/qa.conf
             - 201106_A00516_0169_AHFM3HDSXY
-            - consequences
+            - $JOBNAME
             - chr11
             - first_load
           command:
@@ -30,15 +30,15 @@ spec:
                 fieldRef:
                   fieldPath: metadata.name
           image: "ferlabcrsj/spark:3.1.2"
-          name: raw-normalized-vcf-etl
+          name: raw-vcf-etl
           volumeMounts:
             -
               mountPath: /opt/spark-configs/defaults
               name: spark-defaults
               readOnly: true
             -
-              mountPath: /opt/spark-configs/raw-normalized-vcf-etl
-              name: raw-normalized-vcf-etl
+              mountPath: /opt/spark-configs/raw-vcf-etl
+              name: raw-vcf-etl
               readOnly: true
             -
               mountPath: /opt/spark-configs/s3-credentials
@@ -53,8 +53,8 @@ spec:
           name: spark-defaults
         -
           configMap:
-            name: raw-normalized-vcf-etl
-          name: raw-normalized-vcf-etl
+            name: raw-vcf-etl
+          name: raw-vcf-etl
         -
           name: s3-credentials
           secret:
