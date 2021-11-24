@@ -8,7 +8,7 @@ spec:
     spec:
       serviceAccountName: spark
       containers:
-        - name: prepare-index-etl
+        - name: prepare-index-etl-variant-centric
           image: ferlabcrsj/spark:3.1.2
           env:
             - name: SPARK_CLASS
@@ -32,10 +32,10 @@ spec:
           command:
             - "/opt/client-entrypoint.sh"
           args:
-            - config/qa.conf
-            - variants
-            - re_000
-            - "incremental_load"
+            - "config/qa.conf"
+            - $JOBNAME
+            - "re_000"
+            - "first_load"
 
       restartPolicy: Never
       volumes:

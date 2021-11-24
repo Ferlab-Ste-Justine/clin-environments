@@ -2,17 +2,17 @@
 apiVersion: batch/v1
 kind: Job
 metadata:
-  name: normalized-enriched-etl
+  name: index-elasticsearch-etl
 spec:
   template:
     spec:
       serviceAccountName: spark
       containers:
-        - name: normalized-enriched-etl
+        - name: index-elasticsearch-etl
           image: ferlabcrsj/spark:3.1.2
           env:
             - name: SPARK_CLASS
-              value: bio.ferlab.clin.etl.enriched.RunEnriched
+              value: bio.ferlab.clin.etl.es.Indexer
             - name: SPARK_JAR
               value: s3a://clin-qa-app-datalake/spark/clin-variant-etl.jar
             - name: SPARK_CLIENT_POD_NAME
@@ -23,8 +23,8 @@ spec:
             - name: spark-defaults
               mountPath: /opt/spark-configs/defaults
               readOnly: true
-            - name: normalized-enriched-etl
-              mountPath: /opt/spark-configs/normalized-enriched-etl
+            - name: index-elasticsearch-etl
+              mountPath: /opt/spark-configs/index-elasticsearch-etl
               readOnly: true
             - name: s3-credentials
               mountPath: /opt/spark-configs/s3-credentials
@@ -32,19 +32,21 @@ spec:
           command:
             - "/opt/client-entrypoint.sh"
           args:
-            - config/qa.conf
-            - variants
-            - "11"
-            - first_load
-
+            - "http://elasticsearch-workers:9200"
+            - "clin_qa_$COLOR_$JOBNAME"
+            - "re_000"
+            - "$JOBNAME_template.json"
+            - "$JOBNAME"
+            - "1900-01-01 00:00:00"
+            - "config/qa.conf"
       restartPolicy: Never
       volumes:
         - name: spark-defaults
           configMap:
             name: spark-defaults
-        - name: normalized-enriched-etl
+        - name: index-elasticsearch-etl
           configMap:
-            name: normalized-enriched-etl
+            name: index-elasticsearch-etl
         - name: s3-credentials
           secret:
             secretName: s3-credentials
