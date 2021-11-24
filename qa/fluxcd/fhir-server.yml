@@ -24,7 +24,6 @@ kind: ImageUpdateAutomation
 metadata:
   name: fhir-server
 spec:
-  suspend: true
   sourceRef:
     kind: GitRepository
     name: clin-environments
