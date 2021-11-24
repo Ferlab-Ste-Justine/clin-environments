@@ -13,7 +13,7 @@ spec:
       imagePullSecrets:
         - name: images-pull
       containers:
-        - image: index.docker.io/ferlabcrsj/clin-fhir-server:75c3fb7d1d732a0a32cfa42736c4b4d17662d305-1636034617 # {"$imagepolicy": "flux-clin-qa:fhir-server"}
+        - image: index.docker.io/ferlabcrsj/clin-fhir-server:de6657bc1068c7a614c00c65907be130770196e0-1637781119 # {"$imagepolicy": "flux-clin-qa:fhir-server"}
           name: clin-fhir-server
           resources:
             requests:
