@@ -19,10 +19,10 @@ spec:
             - -d
             - '{
                   "actions": [
-                    {"add": { "index": "patients-green", "alias": "clin-qa-patients"}},
-                    {"add": { "index": "prescriptions-green", "alias": "clin-qa-prescriptions"}},
-                    {"remove": { "index": "patients-blue", "alias": "clin-qa-patients"}},
-                    {"remove": { "index": "prescriptions-blue", "alias": "clin-qa-prescriptions"}}
+                    {"add": { "index": "clin-qa-patients-green", "alias": "clin-qa-patients"}},
+                    {"add": { "index": "clin-qa-prescriptions-green", "alias": "clin-qa-prescriptions"}},
+                    {"remove": { "index": "clin-qa-patients-blue", "alias": "clin-qa-patients"}},
+                    {"remove": { "index": "clin-qa-prescriptions-blue", "alias": "clin-qa-prescriptions"}}
                   ]
                 }'
 
