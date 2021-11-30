@@ -22,3 +22,4 @@ configMapGenerator:
       - SERVICE_ACCOUNT_CLIENT_ID=clin-system
       - SECURE="true"
       - PORT=5050
+      - VARIANTS_SUGGESTIONS_INDEX_NAME=clin_qa_variant_suggestions
