@@ -18,6 +18,6 @@ configMapGenerator:
       - LOGS_REQUEST_INTERCEPTOR="false"
       - AUTH_CLIENT_ID=clin-client
       - AUTH_SERVER_URL=https://auth.staging.clin.ferlab.bio/auth
-      - AUTH_REALM=CLIN
+      - AUTH_REALM=clin
       - SERVICE_ACCOUNT_CLIENT_ID=clin-system
       - SECURE="true"
