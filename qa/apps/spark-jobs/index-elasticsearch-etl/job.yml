@@ -2,13 +2,13 @@
 apiVersion: batch/v1
 kind: Job
 metadata:
-  name: index-elasticsearch-etl
+  name: index-elasticsearch-etl-$JOBNAME-$COLOR
 spec:
   template:
     spec:
       serviceAccountName: spark
       containers:
-        - name: index-elasticsearch-etl
+        - name: index-elasticsearch-etl-$JOBNAME-$COLOR
           image: ferlabcrsj/spark:3.1.2
           env:
             - name: SPARK_CLASS
@@ -33,10 +33,12 @@ spec:
             - "/opt/client-entrypoint.sh"
           args:
             - "http://elasticsearch-workers:9200"
-            - "clin_qa_$COLOR_$JOBNAME"
+            - ""
+            - ""
+            - "clin_qa_$COLOR_$INDEX"
             - "re_000"
-            - "$JOBNAME_template.json"
-            - "$JOBNAME"
+            - "$INDEX_template.json"
+            - "$INDEX"
             - "1900-01-01 00:00:00"
             - "config/qa.conf"
       restartPolicy: Never

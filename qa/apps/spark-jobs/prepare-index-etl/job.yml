@@ -2,13 +2,13 @@
 apiVersion: batch/v1
 kind: Job
 metadata:
-  name: prepare-index-etl
+  name: prepare-index-etl-$JOBNAME-$COLOR
 spec:
   template:
     spec:
       serviceAccountName: spark
       containers:
-        - name: prepare-index-etl-variant-centric
+        - name: prepare-index-etl-variant-centric-$JOBNAME-$COLOR
           image: ferlabcrsj/spark:3.1.2
           env:
             - name: SPARK_CLASS
@@ -33,7 +33,7 @@ spec:
             - "/opt/client-entrypoint.sh"
           args:
             - "config/qa.conf"
-            - $JOBNAME
+            - $INDEX
             - "re_000"
             - "first_load"
 
