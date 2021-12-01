@@ -2,7 +2,7 @@
 apiVersion: batch/v1
 kind: Job
 metadata:
-  name: raw-vcf-etl
+  name: raw-vcf-etl-$JOBNAME-$COLOR
 spec:
   backoffLimit: 4
   template:
@@ -30,7 +30,7 @@ spec:
                 fieldRef:
                   fieldPath: metadata.name
           image: "ferlabcrsj/spark:3.1.2"
-          name: raw-vcf-etl
+          name: raw-vcf-etl-$JOBNAME-$COLOR
           volumeMounts:
             -
               mountPath: /opt/spark-configs/defaults

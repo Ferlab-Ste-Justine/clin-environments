@@ -2,13 +2,13 @@
 apiVersion: batch/v1
 kind: Job
 metadata:
-  name: index-elasticsearch-etl
+  name: index-elasticsearch-etl-$JOBNAME-$COLOR
 spec:
   template:
     spec:
       serviceAccountName: spark
       containers:
-        - name: index-elasticsearch-etl
+        - name: index-elasticsearch-etl-$JOBNAME-$COLOR
           image: ferlabcrsj/spark:3.1.2
           env:
             - name: SPARK_CLASS

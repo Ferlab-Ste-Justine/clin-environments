@@ -4,5 +4,4 @@ kind: Kustomization
 namespace: clin-qa
 
 resources:
-  - job.yml
   - configs.yml

@@ -2,13 +2,13 @@
 apiVersion: batch/v1
 kind: Job
 metadata:
-  name: raw-fhir-etl
+  name: raw-fhir-etl-$COLOR
 spec:
   template:
     spec:
       serviceAccountName: spark
       containers:
-        - name: raw-fhir-etl
+        - name: raw-fhir-etl-$COLOR
           image: ferlabcrsj/spark:3.1.2
           env:
             - name: SPARK_CLASS
