@@ -47,7 +47,7 @@ kind: ImageRepository
 metadata:
   name: arranger
 spec:
-  image: index.docker.io/ferlabcrsj/arranger
+  image: index.docker.io/ferlabcrsj/clin-arranger
   interval: 1m
   secretRef:
     name: images-pull
