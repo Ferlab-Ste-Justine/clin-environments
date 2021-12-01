@@ -33,7 +33,7 @@ spec:
             - "/opt/client-entrypoint.sh"
           args:
             - "config/qa.conf"
-            - $JOBNAME
+            - $INDEX
             - "re_000"
             - "first_load"
 

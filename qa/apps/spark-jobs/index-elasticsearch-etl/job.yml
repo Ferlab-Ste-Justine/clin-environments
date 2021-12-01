@@ -35,8 +35,8 @@ spec:
             - "http://elasticsearch-workers:9200"
             - "clin_qa_$COLOR_$JOBNAME"
             - "re_000"
-            - "$JOBNAME_template.json"
-            - "$JOBNAME"
+            - "$INDEX_template.json"
+            - "$INDEX"
             - "1900-01-01 00:00:00"
             - "config/qa.conf"
       restartPolicy: Never
