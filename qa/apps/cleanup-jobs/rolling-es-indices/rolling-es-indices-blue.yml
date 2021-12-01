@@ -21,8 +21,12 @@ spec:
                   "actions": [
                     {"add": { "index": "clin-qa-patients-blue", "alias": "clin-qa-patients"}},
                     {"add": { "index": "clin-qa-prescriptions-blue", "alias": "clin-qa-prescriptions"}},
+                    {"add": { "index": "clin_qa_blue_variant_centric_re_000", "alias": "clin_qa_variant_centric"}},
+                    {"add": { "index": "clin_qa_blue_variant_suggestions_re_000", "alias": "clin_qa_variant_suggestions"}},
                     {"remove": { "index": "clin-qa-patients-green", "alias": "clin-qa-patients"}},
-                    {"remove": { "index": "clin-qa-prescriptions-green", "alias": "clin-qa-prescriptions"}}
+                    {"remove": { "index": "clin-qa-prescriptions-green", "alias": "clin-qa-prescriptions"}},
+                    {"remove": { "index": "clin_qa_green_variant_centric_re_000", "alias": "clin_qa_variant_centric"}},
+                    {"remove": { "index": "clin_qa_green_variant_suggestions_re_000", "alias": "clin_qa_variant_suggestions"}}
                   ]
                 }'
 
