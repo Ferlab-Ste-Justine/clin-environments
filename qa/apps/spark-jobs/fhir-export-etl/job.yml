@@ -29,12 +29,12 @@ spec:
             - name: AWS_ACCESS_KEY
               valueFrom:
                 secretKeyRef:
-                  name: s3-files-processing-credentials
+                  name: s3-etl-credentials
                   key: S3_ACCESS_KEY
             - name: AWS_SECRET_KEY
               valueFrom:
                 secretKeyRef:
-                  name: s3-files-processing-credentials
+                  name: s3-etl-credentials
                   key: S3_SECRET_KEY
             - name: AWS_ENDPOINT
               value: https://s3.ops.cqdg.ferlab.bio
