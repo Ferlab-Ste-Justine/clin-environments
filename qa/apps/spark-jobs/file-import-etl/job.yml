@@ -13,7 +13,7 @@ spec:
             - bio.ferlab.clin.etl.FileImport
             - 201106_A00516_0169_AHFM3HDSXY
           env:
-            - name: FHIR_SERVER_URL
+            - name: FHIR_URL
               value: https://fhir-$COLOR.qa.clin.ferlab.bio/fhir
             - name: KEYCLOAK_URL
               value: https://auth.qa.clin.ferlab.bio/auth

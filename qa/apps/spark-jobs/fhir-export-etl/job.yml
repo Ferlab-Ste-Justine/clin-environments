@@ -2,18 +2,18 @@
 apiVersion: batch/v1
 kind: Job
 metadata:
-  name: file-import-$COLOR
+  name: fhir-export-$COLOR
 spec:
   template:
     spec:
       containers:
-        - name: file-import-$COLOR
+        - name: fhir-export-$COLOR
           image: ferlabcrsj/clin-pipelines
           args:
             - bio.ferlab.clin.etl.FhirExport
             - all
           env:
-            - name: FHIR_SERVER_URL
+            - name: FHIR_URL
               value: https://fhir-$COLOR.qa.clin.ferlab.bio/fhir
             - name: KEYCLOAK_URL
               value: https://auth.qa.clin.ferlab.bio/auth
