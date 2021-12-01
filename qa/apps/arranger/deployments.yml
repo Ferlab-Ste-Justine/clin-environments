@@ -8,7 +8,7 @@ spec:
       imagePullSecrets:
         - name: images-pull
       containers:
-        - image: index.docker.io/ferlabcrsj/clin-arranger:0a6125b1942039884657f52054db29c8481751e0-1638375786 # {"$imagepolicy": "flux-clin-qa:arranger"}
+        - image: index.docker.io/ferlabcrsj/clin-arranger:b4c37b043fcad4780a72770f1af578da7d0d24ad-1638383316 # {"$imagepolicy": "flux-clin-qa:arranger"}
           name: arranger
           resources:
             requests:
