@@ -23,3 +23,4 @@ configMapGenerator:
       - SECURE="true"
       - PORT=5050
       - VARIANTS_SUGGESTIONS_INDEX_NAME=clin_qa_variant_suggestions
+      - GENES_SUGGESTIONS_INDEX_NAME=clin_qa_gene_suggestions
