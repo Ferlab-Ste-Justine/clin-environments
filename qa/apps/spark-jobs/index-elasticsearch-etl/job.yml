@@ -33,7 +33,9 @@ spec:
             - "/opt/client-entrypoint.sh"
           args:
             - "http://elasticsearch-workers:9200"
-            - "clin_qa_$COLOR_$JOBNAME"
+            - ""
+            - ""
+            - "clin_qa_$COLOR_$INDEX"
             - "re_000"
             - "$INDEX_template.json"
             - "$INDEX"
