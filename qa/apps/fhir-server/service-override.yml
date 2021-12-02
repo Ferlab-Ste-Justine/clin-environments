@@ -5,4 +5,4 @@ metadata:
   name: clin-fhir-server
 spec:
   selector:
-    app: clin-fhir-server-green
+    app: clin-fhir-server
