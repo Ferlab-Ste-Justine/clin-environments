@@ -17,5 +17,5 @@ spec:
       imagePullSecrets:
         - name: images-pull
       containers:
-        - image: index.docker.io/ferlabcrsj/clin-ui:qa-d0b17b661a13f4c91bf407bfd3d456a0d3b991e8-1638822593 # {"$imagepolicy": "flux-clin-qa:clin-ui"}
+        - image: index.docker.io/ferlabcrsj/clin-ui:qa-fdc7d03981b1c973ad7a2e90b7b114fd9e1f0036-1638825798 # {"$imagepolicy": "flux-clin-qa:clin-ui"}
           name: clin-ui
