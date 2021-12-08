@@ -8,7 +8,7 @@ spec:
       imagePullSecrets:
         - name: images-pull
       containers:
-        - image: index.docker.io/ferlabcrsj/clin-frontend:e93d79ae43f9998b570898b29d34a099e94c2e74-1638825696 # {"$imagepolicy": "flux-clin-qa:frontend"}
+        - image: index.docker.io/ferlabcrsj/clin-frontend:dfe5ff8df5fdc93f4a12e9e58dfcc8a33390ee23-1638982270 # {"$imagepolicy": "flux-clin-qa:frontend"}
           name: clin-frontend
           env:
             - name: PATIENT_SERVICE_URL
