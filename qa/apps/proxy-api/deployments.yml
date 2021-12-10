@@ -60,5 +60,5 @@ spec:
       imagePullSecrets:
         - name: images-pull
       containers:
-        - image: index.docker.io/ferlabcrsj/clin-proxy-api-hpo-service:32e0a32aabd0cc06b8cab168f544e82435563442-1635912365 # {"$imagepolicy": "flux-clin-qa:clin-proxy-api-hpo-service"}
+        - image: index.docker.io/ferlabcrsj/clin-proxy-api-hpo-service:7e708af10a4b482c097ea004bbf42437e8fc3d50-1639163762 # {"$imagepolicy": "flux-clin-qa:clin-proxy-api-hpo-service"}
           name: clin-proxy-api-hpo
