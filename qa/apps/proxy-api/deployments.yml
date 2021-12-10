@@ -8,7 +8,7 @@ spec:
       imagePullSecrets:
         - name: images-pull
       containers:
-        - image: index.docker.io/ferlabcrsj/clin-proxy-api-meta-service:32e0a32aabd0cc06b8cab168f544e82435563442-1635912364 # {"$imagepolicy": "flux-clin-qa:clin-proxy-api-meta-service"}
+        - image: index.docker.io/ferlabcrsj/clin-proxy-api-meta-service:7e708af10a4b482c097ea004bbf42437e8fc3d50-1639163764 # {"$imagepolicy": "flux-clin-qa:clin-proxy-api-meta-service"}
           name: clin-proxy-api-meta
 ---
 apiVersion: apps/v1
@@ -21,7 +21,7 @@ spec:
       imagePullSecrets:
         - name: images-pull
       containers:
-        - image: index.docker.io/ferlabcrsj/clin-proxy-api-gene-service:32e0a32aabd0cc06b8cab168f544e82435563442-1635912365 # {"$imagepolicy": "flux-clin-qa:clin-proxy-api-gene-service"}
+        - image: index.docker.io/ferlabcrsj/clin-proxy-api-gene-service:7e708af10a4b482c097ea004bbf42437e8fc3d50-1639163764 # {"$imagepolicy": "flux-clin-qa:clin-proxy-api-gene-service"}
           name: clin-proxy-api-gene
 ---
 apiVersion: apps/v1
@@ -34,7 +34,7 @@ spec:
       imagePullSecrets:
         - name: images-pull
       containers:
-        - image: index.docker.io/ferlabcrsj/clin-proxy-api-variant-service:32e0a32aabd0cc06b8cab168f544e82435563442-1635912362 # {"$imagepolicy": "flux-clin-qa:clin-proxy-api-variant-service"}
+        - image: index.docker.io/ferlabcrsj/clin-proxy-api-variant-service:7e708af10a4b482c097ea004bbf42437e8fc3d50-1639163765 # {"$imagepolicy": "flux-clin-qa:clin-proxy-api-variant-service"}
           name: clin-proxy-api-variant
 ---
 apiVersion: apps/v1
@@ -47,7 +47,7 @@ spec:
       imagePullSecrets:
         - name: images-pull
       containers:
-        - image: index.docker.io/ferlabcrsj/clin-proxy-api-patient-service:32e0a32aabd0cc06b8cab168f544e82435563442-1635912362 # {"$imagepolicy": "flux-clin-qa:clin-proxy-api-patient-service"}
+        - image: index.docker.io/ferlabcrsj/clin-proxy-api-patient-service:7e708af10a4b482c097ea004bbf42437e8fc3d50-1639163765 # {"$imagepolicy": "flux-clin-qa:clin-proxy-api-patient-service"}
           name: clin-proxy-api-patient
 ---
 apiVersion: apps/v1
