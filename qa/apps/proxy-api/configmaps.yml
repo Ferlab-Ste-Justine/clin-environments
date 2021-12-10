@@ -4,6 +4,7 @@ kind: ConfigMap
 metadata:
   name: clin-proxy-config
 data:
+  ES_INDEX_PATIENTS: clin-qa-patients
   KEYCLOAK_URL: https://auth.qa.clin.ferlab.bio/auth/
   KEYCLOAK_AUTH_CLIENT_ID: clin-acl
   KEYCLOAK_CONFIG: |
