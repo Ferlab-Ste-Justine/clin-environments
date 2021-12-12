@@ -4,14 +4,14 @@ kind: Kustomization
 
 namespace: clin-staging
 
-resources:
-  - ../../../common/clin-proxy-api
-  - ingresses.yml
+#resources:
+#  - ../../../common/clin-proxy-api
+#  - ingresses.yml
   #- es-migration
 
-patchesStrategicMerge:
-  - configmaps.yml
-  - deployments.yml
+#patchesStrategicMerge:
+#  - configmaps.yml
+#  - deployments.yml
 
-commonLabels:
-  group: clin-proxy-api
+#commonLabels:
+#  group: clin-proxy-api
