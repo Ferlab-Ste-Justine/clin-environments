@@ -11,11 +11,11 @@ spec:
     name: clin-environments
     namespace: flux-clin-staging
   prune: true
-  healthChecks:
-    - apiVersion: apps/v1
-      kind: StatefulSet
-      name: keycloak
-      namespace: clin-staging
+  #healthChecks:
+  #  - apiVersion: apps/v1
+  #    kind: StatefulSet
+  #    name: keycloak
+  #    namespace: clin-staging
 ---
 apiVersion: image.toolkit.fluxcd.io/v1beta1
 kind: ImageUpdateAutomation
