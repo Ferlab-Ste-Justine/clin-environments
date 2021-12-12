@@ -3,12 +3,12 @@ kind: Kustomization
 
 namespace: clin-staging
 
-resources:
-  - ingress.yml
-  - ../../cqdg-orchestrations/arranger
+#resources:
+#  - ingress.yml
+#  - ../../cqdg-orchestrations/arranger
 
-patchesStrategicMerge:
-  - deployments.yml
+#patchesStrategicMerge:
+#  - deployments.yml
 
 configMapGenerator:
   - name: arranger-keycloak-configs

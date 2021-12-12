@@ -4,18 +4,18 @@ kind: Kustomization
 
 namespace: clin-qa
 
-resources:
-  - ../../../common/fhir-server
-  - ingresses.yml
-  - backups
-  - configmaps-green-blue
-  - deployments-green-blue.yml
-  - services-green-blue.yml
+#resources:
+#  - ../../../common/fhir-server
+#  - ingresses.yml
+#  - backups
+#  - configmaps-green-blue
+#  - deployments-green-blue.yml
+#  - services-green-blue.yml
 
-patchesStrategicMerge:
-  - configmaps-override.yml
-  - deployments-override.yml
-  - service-override.yml
+#patchesStrategicMerge:
+#  - configmaps-override.yml
+#  - deployments-override.yml
+#  - service-override.yml
 
-commonLabels:
-  group: clin-fhir-server
+#commonLabels:
+#  group: clin-fhir-server

@@ -3,12 +3,12 @@ kind: Kustomization
 
 namespace: clin-staging
 
-resources:
-  - ../../cqdg-orchestrations/keycloak
-  - ingress.yml
-  - configure.yml
-  - backups
+#resources:
+#  - ../../cqdg-orchestrations/keycloak
+#  - ingress.yml
+#  - configure.yml
+#  - backups
 
-patchesStrategicMerge:
-  - clin-theme.yml
-  - keycloak-overrides.yml
+#patchesStrategicMerge:
+#  - clin-theme.yml
+#  - keycloak-overrides.yml
