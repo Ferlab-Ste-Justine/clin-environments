@@ -4,10 +4,10 @@ kind: Kustomization
 
 namespace: clin-qa
 
-#resources:
-#  - ../../../common/fhir-console
-#  - ingresses.yml
-#  - configmaps
+resources:
+  - ../../../common/fhir-console
+  - ingresses.yml
+  - configmaps
 
-#patchesStrategicMerge:
-#  - deployments.yml
+patchesStrategicMerge:
+  - deployments.yml

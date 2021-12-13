@@ -4,9 +4,9 @@ kind: Kustomization
 
 namespace: clin-qa
 
-#resources:
-#  - deployments.yml
-#  - service.yml
+resources:
+  - deployments.yml
+  - service.yml
 
-#commonLabels:
-#  group: clin-ui
+commonLabels:
+  group: clin-ui

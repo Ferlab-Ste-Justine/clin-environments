@@ -4,13 +4,13 @@ kind: Kustomization
 
 namespace: clin-qa
 
-#resources:
-#  - ../../../common/ferload
-#  - ingresses.yml
+resources:
+  - ../../../common/ferload
+  - ingresses.yml
 
-#patchesStrategicMerge:
-#  - configmaps.yml
-#  - deployments.yml
+patchesStrategicMerge:
+  - configmaps.yml
+  - deployments.yml
 
-#commonLabels:
-#  group: clin-ferload
+commonLabels:
+  group: clin-ferload
