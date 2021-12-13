@@ -22,7 +22,7 @@ spec:
       imagePullSecrets:
         - name: images-pull
       containers:
-        - image: index.docker.io/ferlabcrsj/clin-fhir-server:8d9213737e9da0f830247556a429ef2063d97f43-1639158847 # {"$imagepolicy": "flux-clin-qa:fhir-server"}
+        - image: index.docker.io/ferlabcrsj/clin-fhir-server:31392d499515fbe78bec0d5b7906d6a011b63b68-1639359970 # {"$imagepolicy": "flux-clin-qa:fhir-server"}
           name: clin-fhir-server-green
           resources:
             requests:
@@ -79,7 +79,7 @@ spec:
       imagePullSecrets:
         - name: images-pull
       containers:
-        - image: index.docker.io/ferlabcrsj/clin-fhir-server:8d9213737e9da0f830247556a429ef2063d97f43-1639158847 # {"$imagepolicy": "flux-clin-qa:fhir-server"}
+        - image: index.docker.io/ferlabcrsj/clin-fhir-server:31392d499515fbe78bec0d5b7906d6a011b63b68-1639359970 # {"$imagepolicy": "flux-clin-qa:fhir-server"}
           name: clin-fhir-server-blue
           resources:
             requests:
