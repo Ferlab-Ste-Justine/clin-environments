@@ -4,13 +4,13 @@ kind: Kustomization
 
 namespace: clin-qa
 
-#resources:
-#  - ../../../common/clin-proxy-api
-#  - ingresses.yml
+resources:
+  - ../../../common/clin-proxy-api
+  - ingresses.yml
 
-#patchesStrategicMerge:
-#  - configmaps.yml
-#  - deployments.yml
+patchesStrategicMerge:
+  - configmaps.yml
+  - deployments.yml
 
-#commonLabels:
-#  group: clin-proxy-api
+commonLabels:
+  group: clin-proxy-api

@@ -4,7 +4,7 @@ kind: Kustomization
 
 namespace: clin-qa
 
-#resources:
-#  - deployments.yml
-#  - ingresses.yml
-#  - services.yml
+resources:
+  - deployments.yml
+  - ingresses.yml
+  - services.yml
