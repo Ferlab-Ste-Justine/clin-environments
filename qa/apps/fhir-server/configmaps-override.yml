@@ -8,4 +8,5 @@ data:
   BIO_AUTH_SERVER_URL: https://auth.qa.clin.ferlab.bio/auth
   HAPI_FHIR_SERVER_ADDRESS: https://fhir.qa.clin.ferlab.bio/fhir/
   HAPI_FHIR_ALLOW_MULTIPLE_DELETE: "true"
+  LOG4J_FORMAT_MSG_NO_LOOKUPS: "true"
   JAVA_OPTS: "-server -Xmx2048m -Djava.net.preferIPv4Stack=true -Djava.awt.headless=true -XX:+UseContainerSupport"
