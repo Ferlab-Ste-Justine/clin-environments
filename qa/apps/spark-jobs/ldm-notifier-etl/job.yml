@@ -1,0 +1,31 @@
+---
+apiVersion: batch/v1
+kind: Job
+metadata:
+  name: ldm-notifier-$COLOR
+spec:
+  template:
+    spec:
+      containers:
+        - name: ldm-notifier-$COLOR
+          image: ferlabcrsj/clin-pipelines
+          args:
+            - bio.ferlab.clin.etl.LDMNotifier
+            - 201106_A00516_0169_AHFM3HDSXY
+          env:
+            - name: MAILER_HOST
+              value: smtp.gmail.com
+            - name: MAILER_PORT
+              value: 587
+            - name: MAILER_USER
+              value: todoSecrets
+            - name: MAILER_PASSWORD
+            - value: todoSecrets
+            - name: MAILER_FROM
+              value: clin_test@ferlab.bio
+            - name: MAILER_BCC
+              value: clin_test@ferlab.bio
+      restartPolicy: Never
+  backoffLimit: 4
+
+
