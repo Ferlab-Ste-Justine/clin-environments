@@ -1,0 +1,50 @@
+---
+apiVersion: batch/v1
+kind: Job
+metadata:
+  name: raw-panels-etl
+spec:
+  template:
+    spec:
+      serviceAccountName: spark
+      imagePullSecrets:
+        - name: images-pull
+      containers:
+      - name: raw-panels-etl
+        image: ferlabcrsj/spark:3.1.2
+        env:
+          - name: SPARK_CLASS
+            value: bio.ferlab.clin.etl.external.ImportExternal
+          - name: SPARK_JAR
+            value: s3a://clin-qa-app-datalake/spark/clin-variant-etl.jar
+          - name: SPARK_CLIENT_POD_NAME
+            valueFrom:
+              fieldRef:
+                fieldPath: metadata.name
+        volumeMounts:
+          - name: spark-defaults
+            mountPath: /opt/spark-configs/defaults
+            readOnly: true
+          - name: raw-panels-etl
+            mountPath: /opt/spark-configs/raw-panels-etl
+            readOnly: true
+          - name: s3-credentials
+            mountPath: /opt/spark-configs/s3-credentials
+            readOnly: true
+        command:
+          - "/opt/client-entrypoint.sh"
+        args:
+          - config/qa.conf
+          - panels
+      restartPolicy: Never
+      volumes:
+        - name: spark-defaults
+          configMap:
+            name: spark-defaults
+        - name: raw-panels-etl
+          configMap:
+            name: raw-panels-etl
+        - name: s3-credentials
+          secret:
+            secretName: s3-credentials
+  backoffLimit: 4
