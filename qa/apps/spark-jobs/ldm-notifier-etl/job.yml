@@ -13,17 +13,29 @@ spec:
             - bio.ferlab.clin.etl.LDMNotifier
             - 201106_A00516_0169_AHFM3HDSXY
           env:
+            - name: FHIR_URL
+              value: https://fhir-$COLOR.qa.clin.ferlab.bio/fhir
+            - name: KEYCLOAK_URL
+              value: https://auth.qa.clin.ferlab.bio/auth
+            - name: KEYCLOAK_CLIENT_KEY
+              value: clin-system
+            - name: KEYCLOAK_CLIENT_SECRET
+              valueFrom:
+                secretKeyRef:
+                  name: keycloak-clin-system-client-credentials
+                  key: KEYCLOAK_CLIENT_SECRET
+            - name: KEYCLOAK_AUTHORIZATION_AUDIENCE
+              value: clin-acl
             - name: MAILER_HOST
-              value: smtp.gmail.com
+              value: "smtp.gmail.com"
             - name: MAILER_PORT
-              value: 587
+              value: "587"
             - name: MAILER_FROM
-              value: clin_test@ferlab.bio
+              value: "clin_test@ferlab.bio"
             - name: MAILER_BCC
-              value: clin_test@ferlab.bio
-        envFrom:
-          - secretRef:
-            name: smtp-notification-credentials
+              value: "clin_test@ferlab.bio"
+          envFrom:
+            - secretRef:
+                name: smtp-notification-credentials
       restartPolicy: Never
-  backoffLimit: 4
 
