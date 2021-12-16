@@ -36,6 +36,7 @@ spec:
         args:
           - config/qa.conf
           - panels
+          - first_load
       restartPolicy: Never
       volumes:
         - name: spark-defaults
