@@ -34,6 +34,8 @@ spec:
               value: "clin_test@ferlab.bio"
             - name: MAILER_BCC
               value: "clin_test@ferlab.bio"
+            - name: CLIN_URL
+              value: "https://qa.clin.ferlab.bio"
           envFrom:
             - secretRef:
                 name: smtp-notification-credentials
