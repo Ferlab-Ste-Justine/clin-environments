@@ -1,0 +1,10 @@
+---
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: clin-prescription-renderer
+data:
+  FHIR_SERVER_URL: https://fhir.qa.clin.ferlab.bio/fhir
+  SECURITY_ENABLED: true
+  SECURITY_AUDIENCE: clin-acl
+  SECURITY_ISSUER: https://auth.qa.clin.ferlab.bio/auth/realms/clin
