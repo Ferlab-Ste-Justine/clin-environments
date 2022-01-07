@@ -7,9 +7,9 @@ namespace: clin-qa
 resources:
   - ../../../common/renderer
   - ingresses.yml
+  - configmaps.yml
 
 patchesStrategicMerge:
-  - configmaps.yml
   - deployments.yml
 
 commonLabels:
