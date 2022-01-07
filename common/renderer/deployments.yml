@@ -25,3 +25,6 @@ spec:
             limits:
               memory: "2048Mi"
               cpu: '2.00'
+          envFrom:
+            - configMapRef:
+                name: clin-prescription-renderer
