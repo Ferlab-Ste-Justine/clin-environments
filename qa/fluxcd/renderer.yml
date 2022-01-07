@@ -35,7 +35,7 @@ spec:
         branch: master
     commit:
       author:
-        name: renderer-automation
+        name: ferlab-automation
         email: automation@ferlab.bio
       messageTemplate: |
         Auto-release from fluxcd      
