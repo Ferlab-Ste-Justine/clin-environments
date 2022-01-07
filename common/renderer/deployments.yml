@@ -1,0 +1,27 @@
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  labels:
+    app: clin-prescription-renderer
+  name: clin-prescription-renderer
+spec:
+  replicas: 2
+  selector:
+    matchLabels:
+      app: clin-prescription-renderer
+  template:
+    metadata:
+      labels:
+        app: clin-prescription-renderer
+    spec:
+      containers:
+        - image: chusj/renderer:__UNDEFINED__
+          name: clin-prescription-renderer
+          resources:
+            requests:
+              memory: "1024Mi"
+              cpu: '1.00'
+            limits:
+              memory: "2048Mi"
+              cpu: '2.00'
