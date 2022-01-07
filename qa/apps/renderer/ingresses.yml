@@ -9,10 +9,10 @@ metadata:
 spec:
   tls:
     - hosts:
-        - ferload.qa.clin.renderer.bio
+        - renderer.qa.clin.ferlab.bio
       secretName: letsencrypt-certificate
   rules:
-    - host: ferload.qa.clin.renderer.bio
+    - host: renderer.qa.clin.ferlab.bio
       http:
         paths:
           - path: /
