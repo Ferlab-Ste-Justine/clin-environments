@@ -21,6 +21,8 @@ spec:
               value: https://meta.staging.clin.ferlab.bio/meta
             - name: FHIR_SERVICE_URL
               value: https://fhir.staging.clin.ferlab.bio/fhir
+            - name: RENDERER_SERVICE_URL
+              value: https://renderer.staging.clin.ferlab.bio/pdf
             - name: HPO_SERVICE_URL
               value: https://hpo.staging.clin.ferlab.bio/hpo
             - name: ARRANGER_API
