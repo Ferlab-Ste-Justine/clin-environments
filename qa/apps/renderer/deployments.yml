@@ -8,5 +8,5 @@ spec:
       imagePullSecrets:
         - name: images-pull
       containers:
-        - image: index.docker.io/ferlabcrsj/clin-prescription-renderer:537e8e540a85251ed6606a26e7e123c24f23427e-1642013735 # {"$imagepolicy": "flux-clin-qa:renderer"}
+        - image: index.docker.io/ferlabcrsj/clin-prescription-renderer:2117c44bd4f7175210ffc5399202ea91619be67f-1642014036 # {"$imagepolicy": "flux-clin-qa:renderer"}
           name: clin-prescription-renderer
