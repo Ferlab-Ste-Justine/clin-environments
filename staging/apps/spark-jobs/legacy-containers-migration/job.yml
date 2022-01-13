@@ -1,0 +1,30 @@
+---
+apiVersion: batch/v1
+kind: Job
+metadata:
+  name: legacy-clin-containers-migration
+spec:
+  activeDeadlineSeconds: 7200
+  backoffLimit: 0
+  template:
+    spec:
+      imagePullSecrets:
+        - name: images-pull
+      restartPolicy: Never
+      volumes:
+        - name: legacy-clin-containers-migration
+          configMap:
+            name: legacy-clin-containers-migration
+            defaultMode: 0555
+      containers:
+        - image: minio/mc:RELEASE.2021-03-23T05-46-11Z
+          name: legacy-clin-containers-migration
+          command:
+            - /opt/migrate.sh
+          envFrom:
+            - secretRef:
+                name: s3-spark-migration-credentials
+          volumeMounts:
+            - name: legacy-clin-containers-migration
+              mountPath: /opt
+              readOnly: true

@@ -1,0 +1,61 @@
+---
+apiVersion: batch/v1
+kind: Job
+metadata:
+  name: raw-vcf-etl-$JOBNAME
+spec:
+  backoffLimit: 4
+  template:
+    spec:
+      containers:
+        -
+          args:
+            - config/staging.conf
+            - 201106_A00516_0169_AHFM3HDSXY
+            - $JOBNAME
+            - chr11
+            - first_load
+          command:
+            - /opt/client-entrypoint.sh
+          env:
+            -
+              name: SPARK_CLASS
+              value: bio.ferlab.clin.etl.vcf.ImportVcf
+            -
+              name: SPARK_JAR
+              value: "s3a://clin-staging-app-datalake/spark/clin-variant-etl.jar"
+            -
+              name: SPARK_CLIENT_POD_NAME
+              valueFrom:
+                fieldRef:
+                  fieldPath: metadata.name
+          image: "ferlabcrsj/spark:3.1.2"
+          name: raw-vcf-etl-$JOBNAME
+          volumeMounts:
+            -
+              mountPath: /opt/spark-configs/defaults
+              name: spark-defaults
+              readOnly: true
+            -
+              mountPath: /opt/spark-configs/raw-vcf-etl
+              name: raw-vcf-etl
+              readOnly: true
+            -
+              mountPath: /opt/spark-configs/s3-credentials
+              name: s3-credentials
+              readOnly: true
+      restartPolicy: Never
+      serviceAccountName: spark
+      volumes:
+        -
+          configMap:
+            name: spark-defaults
+          name: spark-defaults
+        -
+          configMap:
+            name: raw-vcf-etl
+          name: raw-vcf-etl
+        -
+          name: s3-credentials
+          secret:
+            secretName: s3-credentials

@@ -1,0 +1,38 @@
+---
+apiVersion: batch/v1
+kind: Job
+metadata:
+  name: import-test-data
+spec:
+  template:
+    spec:
+      volumes:
+        - name: google-credentials
+          secret:
+            defaultMode: 0555
+            secretName: googlesheets-credentials
+      containers:
+        - name: import-test-data
+          image: ferlabcrsj/csv-to-fhir
+          env:
+            - name: config.fhir.url
+              value: https://fhir.staging.clin.ferlab.bio/fhir
+            - name: config.fhir.oauth.client_id
+              value: clin-system
+            - name: config.fhir.oauth.client_secret
+              valueFrom:
+                secretKeyRef:
+                  name: keycloak-clin-system-client-credentials
+                  key: KEYCLOAK_CLIENT_SECRET
+            - name: config.fhir.oauth.uma_audience
+              value: clin-acl
+            - name: config.fhir.oauth.url
+              value: https://auth.staging.clin.ferlab.bio/auth/realms/clin/protocol/openid-connect/token
+          volumeMounts:
+            - name: google-credentials
+              mountPath: /app/creds
+              readOnly: true
+      restartPolicy: Never
+  backoffLimit: 4
+
+
