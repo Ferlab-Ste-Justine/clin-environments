@@ -64,9 +64,6 @@ spec:
   imageRepositoryRef:
     name: renderer
     namespace: flux-clin-staging
-  filterTags:
-    pattern: '^[a-fA-F0-9]+-(?P<ts>.*)'
-    extract: '$ts'
   policy:
-     numerical:
-      order: asc
+    semver:
+      range: '>=1.0.0 <2.0.0'
