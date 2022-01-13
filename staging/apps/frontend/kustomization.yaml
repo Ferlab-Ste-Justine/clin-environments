@@ -4,12 +4,12 @@ kind: Kustomization
 
 namespace: clin-staging
 
-#resources:
-#  - ../../../common/clin-frontend
-#  - ingresses.yml
+resources:
+  - ../../../common/clin-frontend
+  - ingresses.yml
 
-#patchesStrategicMerge:
-#  - deployments.yml
+patchesStrategicMerge:
+  - deployments.yml
 
-#commonLabels:
-#  group: clin-frontend
+commonLabels:
+  group: clin-frontend
