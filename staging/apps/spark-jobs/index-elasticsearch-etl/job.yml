@@ -35,7 +35,7 @@ spec:
             - "http://elasticsearch-workers:9200"
             - ""
             - ""
-            - "clin_staging_$COLOR_$INDEX"
+            - "clin_staging_$INDEX"
             - "re_000"
             - "$INDEX_template.json"
             - "$INDEX"
