@@ -4,15 +4,15 @@ kind: Kustomization
 
 namespace: clin-staging
 
-#resources:
-#  - ../../../common/fhir-server
-#  - ingresses.yml
+resources:
+  - ../../../common/fhir-server
+  - ingresses.yml
   #- es-migration
   #- backups
 
-#patchesStrategicMerge:
-#  - configmaps.yml
-#  - deployments.yml
+patchesStrategicMerge:
+  - configmaps.yml
+  - deployments.yml
 
-#commonLabels:
-#  group: clin-fhir-server
+commonLabels:
+  group: clin-fhir-server
