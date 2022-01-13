@@ -1,0 +1,12 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: clin-prescription-renderer
+spec:
+  template:
+    spec:
+      imagePullSecrets:
+        - name: images-pull
+      containers:
+        - image: index.docker.io/ferlabcrsj/clin-prescription-renderer:1.0.0 # {"$imagepolicy": "flux-clin-staging:renderer"}
+          name: clin-prescription-renderer

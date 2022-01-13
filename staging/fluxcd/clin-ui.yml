@@ -1,0 +1,72 @@
+apiVersion: kustomize.toolkit.fluxcd.io/v1beta2
+kind: Kustomization
+metadata:
+  name: clin-ui
+spec:
+  serviceAccountName: flux
+  interval: 1m
+  path: "./staging/apps/clin-ui"
+  sourceRef:
+    kind: GitRepository
+    name: clin-environments
+    namespace: flux-clin-staging
+  prune: true
+  healthChecks:
+    - apiVersion: apps/v1
+      kind: Deployment
+      name: clin-ui
+      namespace: clin-staging
+---
+apiVersion: image.toolkit.fluxcd.io/v1beta1
+kind: ImageUpdateAutomation
+metadata:
+  name: clin-ui
+spec:
+  sourceRef:
+    kind: GitRepository
+    name: clin-environments
+  interval: 1m
+  update:
+    strategy: Setters
+    path: "./staging/apps/clin-ui"
+  git:
+    checkout:
+      ref:
+        branch: master
+    commit:
+      author:
+        name: ferlab-automation
+        email: automation@ferlab.bio
+      messageTemplate: |
+        Auto-release from fluxcd      
+    push:
+      branch: master
+---
+apiVersion: image.toolkit.fluxcd.io/v1beta1
+kind: ImageRepository
+metadata:
+  name: clin-ui
+spec:
+  image: index.docker.io/ferlabcrsj/clin-ui
+  interval: 1m
+  secretRef:
+    name: images-pull
+  accessFrom:
+    namespaceSelectors:
+      - matchLabels:
+          kubernetes.io/metadata.name: flux-clin-staging
+---
+kind: ImagePolicy
+apiVersion: image.toolkit.fluxcd.io/v1beta1
+metadata:
+  name: clin-ui
+spec:
+  imageRepositoryRef:
+    name: clin-ui
+    namespace: flux-clin-staging
+  filterTags:
+    pattern: '^staging-(?P<semver>[0-9]+[.][0-9]+[.][0-9]+)'
+    extract: '$semver'
+  policy:
+    semver:
+      range: '>=1.0.0 <2.0.0'

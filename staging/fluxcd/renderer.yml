@@ -1,0 +1,69 @@
+apiVersion: kustomize.toolkit.fluxcd.io/v1beta2
+kind: Kustomization
+metadata:
+  name: renderer
+spec:
+  serviceAccountName: flux
+  interval: 1m
+  path: "./staging/apps/renderer"
+  sourceRef:
+    kind: GitRepository
+    name: clin-environments
+    namespace: flux-clin-staging
+  prune: true
+  healthChecks:
+    - apiVersion: apps/v1
+      kind: Deployment
+      name: clin-prescription-renderer
+      namespace: clin-staging
+---
+apiVersion: image.toolkit.fluxcd.io/v1beta1
+kind: ImageUpdateAutomation
+metadata:
+  name: renderer
+spec:
+  sourceRef:
+    kind: GitRepository
+    name: clin-environments
+  interval: 1m
+  update:
+    strategy: Setters
+    path: "./staging/apps/renderer"
+  git:
+    checkout:
+      ref:
+        branch: master
+    commit:
+      author:
+        name: ferlab-automation
+        email: automation@ferlab.bio
+      messageTemplate: |
+        Auto-release from fluxcd      
+    push:
+      branch: master
+---
+apiVersion: image.toolkit.fluxcd.io/v1beta1
+kind: ImageRepository
+metadata:
+  name: renderer
+spec:
+  image: index.docker.io/ferlabcrsj/clin-prescription-renderer
+  interval: 1m
+  secretRef:
+    name: images-pull
+  accessFrom:
+    namespaceSelectors:
+      - matchLabels:
+          kubernetes.io/metadata.name: flux-clin-staging
+---
+kind: ImagePolicy
+apiVersion: image.toolkit.fluxcd.io/v1beta1
+metadata:
+  name: renderer
+spec:
+  imageRepositoryRef:
+    name: renderer
+    namespace: flux-clin-staging
+  policy:
+    semver:
+      range: '>=1.0.0 <2.0.0'

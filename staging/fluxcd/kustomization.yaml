@@ -6,6 +6,7 @@ namespace: flux-clin-staging
 resources:
   - arranger.yml
   - certificate.yml
+  - clin-ui.yml
   - elasticsearch.yml
   - ferload.yml
   - fhir-console.yml
@@ -19,3 +20,4 @@ resources:
   - spark-core.yml
   - spark-sql.yml
   - terraform.yml
+  - renderer.yml
