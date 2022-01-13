@@ -21,3 +21,5 @@ configMapGenerator:
       - AUTH_REALM=clin
       - SERVICE_ACCOUNT_CLIENT_ID=clin-system
       - SECURE="true"
+      - PORT=5050
+      - VARIANTS_SUGGESTIONS_INDEX_NAME=clin_staging_variant_suggestions
