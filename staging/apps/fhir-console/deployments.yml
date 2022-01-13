@@ -11,5 +11,5 @@ spec:
       imagePullSecrets:
         - name: images-pull
       containers:
-        - image: index.docker.io/ferlabcrsj/fhir-console:1.0.1 # {"$imagepolicy": "flux-clin-staging:fhir-console"}
+        - image: index.docker.io/ferlabcrsj/fhir-console:1.0.2 # {"$imagepolicy": "flux-clin-staging:fhir-console"}
           name: clin-fhir-console
