@@ -20,3 +20,4 @@ spec:
     - ferload.staging.clin.ferlab.bio
     - notebook.staging.clin.ferlab.bio
     - data-api.staging.clin.ferlab.bio
+    - renderer.staging.clin.ferlab.bio

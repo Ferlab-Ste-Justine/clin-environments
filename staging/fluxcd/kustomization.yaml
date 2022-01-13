@@ -19,3 +19,4 @@ resources:
   - spark-core.yml
   - spark-sql.yml
   - terraform.yml
+  - renderer.yml
