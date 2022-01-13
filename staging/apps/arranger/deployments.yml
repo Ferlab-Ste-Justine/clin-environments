@@ -1,4 +1,3 @@
----
 apiVersion: apps/v1
 kind: Deployment
 metadata:
@@ -9,7 +8,7 @@ spec:
       imagePullSecrets:
         - name: images-pull
       containers:
-        - image: ferlabcrsj/clin-arranger:a62e3c037956ab750bae6f55ab51f3cd41f9bb02-1635909642 # {"$imagepolicy": "flux-clin-staging:arranger"}
+        - image: index.docker.io/ferlabcrsj/clin-arranger:1.0.1 # {"$imagepolicy": "flux-clin-staging:arranger"}
           name: arranger
           resources:
             requests:
