@@ -8,7 +8,7 @@ spec:
       imagePullSecrets:
         - name: images-pull
       containers:
-        - image: index.docker.io/ferlabcrsj/ferload:c304ee8db776798ab86f92471ad9f59b47d15cec-1637942184 # {"$imagepolicy": "flux-clin-qa:ferload"}
+        - image: index.docker.io/ferlabcrsj/ferload:eec27e3e8b2c5ebbb5dd7f5f72cff2930ff0a23f-1642190303 # {"$imagepolicy": "flux-clin-qa:ferload"}
           name: clin-ferload
           env:
             - name: AWS_ACCESS_KEY
