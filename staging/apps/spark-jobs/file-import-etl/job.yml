@@ -43,7 +43,7 @@ spec:
             - name: AWS_BUCKET_NAME
               value: clin-staging-app-files-import
             - name: AWS_PREFIX
-              value: $COLOR
+              value: files
             - name: AWS_OUTPUT_BUCKET_NAME
               value: clin-staging-app-clin-download
 

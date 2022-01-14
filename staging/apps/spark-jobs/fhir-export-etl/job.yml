@@ -42,8 +42,6 @@ spec:
               value: regionone
             - name: AWS_BUCKET_NAME
               value: clin-staging-app-datalake
-            - name: AWS_PREFIX
-              value: $COLOR
             - name: AWS_OUTPUT_BUCKET_NAME
               value: clin-staging-app-clin-download
 
