@@ -14,7 +14,7 @@ spec:
             - name: SPARK_CLASS
               value: bio.ferlab.clin.etl.es.PrepareIndex
             - name: SPARK_JAR
-              value: s3a://clin-staging-app-datalake/spark/clin-variant-etl.jar
+              value: https://github.com/Ferlab-Ste-Justine/clin-variant-etl/releases/download/v1.0.0/clin-variant-etl.jar
             - name: SPARK_CLIENT_POD_NAME
               valueFrom:
                 fieldRef:
