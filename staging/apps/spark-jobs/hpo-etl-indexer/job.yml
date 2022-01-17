@@ -14,7 +14,7 @@ spec:
           - name: SPARK_CLASS
             value: bio.ferlab.clin.idx.hpo.HPO
           - name: SPARK_JAR
-            value: s3a://clin-staging-app-datalake/spark/clin-hpo-etl.jar
+            value: https://github.com/Ferlab-Ste-Justine/clin-hpo-etl/releases/download/v1.0.0/clin-hpo-etl.jar
           - name: SPARK_CLIENT_POD_NAME
             valueFrom:
               fieldRef:
