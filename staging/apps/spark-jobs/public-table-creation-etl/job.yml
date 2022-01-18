@@ -1,0 +1,47 @@
+---
+apiVersion: batch/v1
+kind: Job
+metadata:
+  name: public-table-creation-etl
+spec:
+  template:
+    spec:
+      serviceAccountName: spark
+      containers:
+      - name: public-table-creation-etl
+        image: ferlabcrsj/spark:3.1.2
+        env:
+          - name: SPARK_CLASS
+            value: bio.ferlab.clin.etl.external.CreatePublicTables
+          - name: SPARK_JAR
+            value: https://github.com/Ferlab-Ste-Justine/clin-variant-etl/releases/download/v1.0.0/clin-variant-etl.jar
+          - name: SPARK_CLIENT_POD_NAME
+            valueFrom:
+              fieldRef:
+                fieldPath: metadata.name
+        volumeMounts:
+          - name: spark-defaults
+            mountPath: /opt/spark-configs/defaults
+            readOnly: true
+          - name: public-table-creation-etl
+            mountPath: /opt/spark-configs/public-table-creation-etl
+            readOnly: true
+          - name: s3-credentials
+            mountPath: /opt/spark-configs/s3-credentials
+            readOnly: true
+        command:
+          - "/opt/client-entrypoint.sh"
+        args:
+          - config/staging.conf
+      restartPolicy: Never
+      volumes:
+        - name: spark-defaults
+          configMap:
+            name: spark-defaults
+        - name: public-table-creation-etl
+          configMap:
+            name: public-table-creation-etl
+        - name: s3-credentials
+          secret:
+            secretName: s3-credentials
+  backoffLimit: 4

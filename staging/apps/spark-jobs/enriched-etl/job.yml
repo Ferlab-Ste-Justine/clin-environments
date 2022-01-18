@@ -1,0 +1,51 @@
+---
+apiVersion: batch/v1
+kind: Job
+metadata:
+  name: enriched-etl-$JOBNAME
+spec:
+  template:
+    spec:
+      serviceAccountName: spark
+      containers:
+        - name: enriched-etl-$JOBNAME
+          image: ferlabcrsj/spark:3.1.2
+          env:
+            - name: SPARK_CLASS
+              value: bio.ferlab.clin.etl.enriched.RunEnriched
+            - name: SPARK_JAR
+              value: https://github.com/Ferlab-Ste-Justine/clin-variant-etl/releases/download/v1.0.0/clin-variant-etl.jar
+            - name: SPARK_CLIENT_POD_NAME
+              valueFrom:
+                fieldRef:
+                  fieldPath: metadata.name
+          volumeMounts:
+            - name: spark-defaults
+              mountPath: /opt/spark-configs/defaults
+              readOnly: true
+            - name: enriched-etl
+              mountPath: /opt/spark-configs/enriched-etl
+              readOnly: true
+            - name: s3-credentials
+              mountPath: /opt/spark-configs/s3-credentials
+              readOnly: true
+          command:
+            - "/opt/client-entrypoint.sh"
+          args:
+            - config/staging.conf
+            - $JOBNAME
+            - "11"
+            - first_load
+
+      restartPolicy: Never
+      volumes:
+        - name: spark-defaults
+          configMap:
+            name: spark-defaults
+        - name: enriched-etl
+          configMap:
+            name: enriched-etl
+        - name: s3-credentials
+          secret:
+            secretName: s3-credentials
+  backoffLimit: 4

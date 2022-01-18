@@ -1,0 +1,29 @@
+---
+apiVersion: batch/v1
+kind: Job
+metadata:
+  name: publish-ig-fhir
+spec:
+  template:
+    spec:
+      containers:
+        - name: publish-ig-fhir
+          image: ferlabcrsj/clin-fhir
+          env:
+            - name: OAUTH_CLIENT_ID
+              value: clin-system
+            - name: OAUTH_CLIENT_SECRET
+              valueFrom:
+                secretKeyRef:
+                  name: keycloak-clin-system-client-credentials
+                  key: KEYCLOAK_CLIENT_SECRET
+            - name: OAUTH_UMA_AUDIENCE
+              value: clin-acl
+            - name: OAUTH_URL
+              value: https://auth.staging.clin.ferlab.bio/auth/realms/clin/protocol/openid-connect/token
+            - name: BASE_URL
+              value: https://fhir.staging.clin.ferlab.bio/fhir
+      restartPolicy: Never
+  backoffLimit: 4
+
+

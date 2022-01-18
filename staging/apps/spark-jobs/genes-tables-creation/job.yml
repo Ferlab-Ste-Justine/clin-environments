@@ -1,0 +1,49 @@
+---
+apiVersion: batch/v1
+kind: Job
+metadata:
+  name: genes-tables-creation
+spec:
+  template:
+    spec:
+      serviceAccountName: spark
+      imagePullSecrets:
+        - name: images-pull
+      containers:
+      - name: genes-tables-creation
+        image: ferlabcrsj/spark:3.1.2
+        env:
+          - name: SPARK_CLASS
+            value: bio.ferlab.clin.etl.external.CreateGenesTable
+          - name: SPARK_JAR
+            value: https://github.com/Ferlab-Ste-Justine/clin-variant-etl/releases/download/v1.0.0/clin-variant-etl.jar
+          - name: SPARK_CLIENT_POD_NAME
+            valueFrom:
+              fieldRef:
+                fieldPath: metadata.name
+        volumeMounts:
+          - name: spark-defaults
+            mountPath: /opt/spark-configs/defaults
+            readOnly: true
+          - name: genes-tables-creation
+            mountPath: /opt/spark-configs/genes-tables-creation
+            readOnly: true
+          - name: s3-credentials
+            mountPath: /opt/spark-configs/s3-credentials
+            readOnly: true
+        command:
+          - "/opt/client-entrypoint.sh"
+        args:
+          - config/staging.conf
+      restartPolicy: Never
+      volumes:
+        - name: spark-defaults
+          configMap:
+            name: spark-defaults
+        - name: genes-tables-creation
+          configMap:
+            name: genes-tables-creation
+        - name: s3-credentials
+          secret:
+            secretName: s3-credentials
+  backoffLimit: 4

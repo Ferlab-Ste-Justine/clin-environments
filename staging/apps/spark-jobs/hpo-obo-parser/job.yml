@@ -1,0 +1,49 @@
+---
+apiVersion: batch/v1
+kind: Job
+metadata:
+  name: hpo-obo-parser
+spec:
+  template:
+    spec:
+      serviceAccountName: spark
+      containers:
+      - name: hpo-obo-parser
+        image: ferlabcrsj/spark:3.1.2
+        env:
+          - name: SPARK_CLASS
+            value: bio.ferlab.HPOMain
+          - name: SPARK_JAR
+            value: s3a://clin-staging-app-datalake/spark/obo-parser.jar
+          - name: SPARK_CLIENT_POD_NAME
+            valueFrom:
+              fieldRef:
+                fieldPath: metadata.name
+        volumeMounts:
+          - name: spark-defaults
+            mountPath: /opt/spark-configs/defaults
+            readOnly: true
+          - name: hpo-obo-parser
+            mountPath: /opt/spark-configs/hpo-obo-parser
+            readOnly: true
+          - name: s3-credentials
+            mountPath: /opt/spark-configs/s3-credentials
+            readOnly: true
+        command:
+          - "/opt/client-entrypoint.sh"
+        args:
+          - "https://raw.githubusercontent.com/obophenotype/human-phenotype-ontology/master/hp.obo"
+          - s3a://clin-staging-app-datalake/public/hpo
+          - "false"
+      restartPolicy: Never
+      volumes:
+        - name: spark-defaults
+          configMap:
+            name: spark-defaults
+        - name: hpo-obo-parser
+          configMap:
+            name: hpo-obo-parser
+        - name: s3-credentials
+          secret:
+            secretName: s3-credentials
+  backoffLimit: 4
