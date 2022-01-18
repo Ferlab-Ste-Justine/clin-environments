@@ -33,9 +33,9 @@ spec:
             - "/opt/client-entrypoint.sh"
           args:
             - config/qa.conf
+            - initial
             - $JOBNAME
             - "11"
-            - first_load
 
       restartPolicy: Never
       volumes:

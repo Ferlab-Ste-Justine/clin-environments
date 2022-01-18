@@ -11,10 +11,10 @@ spec:
         -
           args:
             - config/qa.conf
+            - initial
             - 201106_A00516_0169_AHFM3HDSXY
             - $JOBNAME
             - chr11
-            - first_load
           command:
             - /opt/client-entrypoint.sh
           env:
