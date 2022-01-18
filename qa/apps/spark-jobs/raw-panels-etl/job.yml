@@ -35,8 +35,8 @@ spec:
           - "/opt/client-entrypoint.sh"
         args:
           - config/qa.conf
+          - initial
           - panels
-          - first_load
       restartPolicy: Never
       volumes:
         - name: spark-defaults

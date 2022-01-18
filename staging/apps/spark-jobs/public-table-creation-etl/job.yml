@@ -33,6 +33,7 @@ spec:
           - "/opt/client-entrypoint.sh"
         args:
           - config/staging.conf
+          - initial
       restartPolicy: Never
       volumes:
         - name: spark-defaults
