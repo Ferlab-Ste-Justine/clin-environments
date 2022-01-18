@@ -13,18 +13,23 @@ spec:
             - name: PGUSER
               valueFrom:
                 secretKeyRef:
-                  name: postgres-staging-clin-fhir-credentials
+                  name: postgres-qa-fhir-credentials
                   key: username
             - name: PGPASSWORD
               valueFrom:
                 secretKeyRef:
-                  name: postgres-staging-clin-fhir-credentials
+                  name: postgres-qa-fhir-credentials
                   key: password
-          envFrom:
-            - configMapRef:
-                name: clin-fhir-server-db-connection
-            - configMapRef:
-                name: clin-fhir-server-db-connection-tls
+            - name: PGDATABASE
+              value: clin_fhir_staging
+            - name: PGHOST
+              value: postgres-server-qa
+            - name: PGSSLMODE
+              value: verify-full
+            - name: PGSSLROOTCERT
+              value: /opt/ca/ca.pem
+            - name: NODE_EXTRA_CA_CERTS
+              value: /opt/ca/ca.pem
           volumeMounts:
             - name: ca-certificate
               mountPath: /opt/ca
@@ -46,7 +51,7 @@ spec:
         - name: ca-certificate
           secret:
             defaultMode: 365
-            secretName: postgres-staging-ca-certificate
+            secretName: postgres-qa-ca-certificate
   backoffLimit: 4
 
 
