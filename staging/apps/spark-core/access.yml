@@ -30,4 +30,4 @@ roleRef:
 subjects:
   - kind: ServiceAccount
     name: spark
-    namespace: spark
+    namespace: clin-staging
