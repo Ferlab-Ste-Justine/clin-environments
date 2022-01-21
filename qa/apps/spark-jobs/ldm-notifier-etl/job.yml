@@ -27,11 +27,11 @@ spec:
             - name: KEYCLOAK_AUTHORIZATION_AUDIENCE
               value: clin-acl
             - name: MAILER_HOST
-              value: "smtp.gmail.com"
+              value: "smtp-relay.gmail.com"
             - name: MAILER_PORT
-              value: "587"
+              value: "25"
             - name: MAILER_FROM
-              value: "clin_test@ferlab.bio"
+              value: "notification@ferlab.bio"
             - name: MAILER_BCC
               value: "clin_test@ferlab.bio"
             - name: CLIN_URL
