@@ -25,4 +25,4 @@ spec:
     protocol: TCP
     targetPort: 8080
   selector:
-    app: clin-fhir-server-green
+    app: clin-fhir-server-blue
