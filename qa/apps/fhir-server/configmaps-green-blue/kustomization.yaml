@@ -18,6 +18,7 @@ configMapGenerator:
       - JAVA_OPTS="-server -Xmx2048m -Djava.net.preferIPv4Stack=true -Djava.awt.headless=true -XX:+UseContainerSupport"
       - BIO_ELASTICSEARCH_PATIENTS_INDEX=clin-qa-patients-green
       - BIO_ELASTICSEARCH_PRESCRIPTIONS_INDEX=clin-qa-prescriptions-green
+      - BIO_TAGGING_ENABLED=false
   - name: clin-fhir-server-blue
     literals:
       - BIO_ELASTICSEARCH_HOST=elasticsearch-workers
@@ -34,3 +35,4 @@ configMapGenerator:
       - JAVA_OPTS="-server -Xmx2048m -Djava.net.preferIPv4Stack=true -Djava.awt.headless=true -XX:+UseContainerSupport"
       - BIO_ELASTICSEARCH_PATIENTS_INDEX=clin-qa-patients-blue
       - BIO_ELASTICSEARCH_PRESCRIPTIONS_INDEX=clin-qa-prescriptions-blue
+      - BIO_TAGGING_ENABLED=false
