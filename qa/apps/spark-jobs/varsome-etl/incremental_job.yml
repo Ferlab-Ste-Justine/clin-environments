@@ -1,0 +1,66 @@
+---
+apiVersion: batch/v1
+kind: Job
+metadata:
+  name: varsome-incremental-etl
+spec:
+  backoffLimit: 1
+  template:
+    spec:
+      containers:
+        -
+          args:
+            - config/qa.conf
+            - default
+            - "11"
+            - 201106_A00516_0169_AHFM3HDSXY
+          command:
+            - /opt/client-entrypoint.sh
+          env:
+            - name: SPARK_CLASS
+              value: bio.ferlab.clin.etl.varsome.Varsome
+            - name: SPARK_JAR
+              value: s3a://clin-qa-app-datalake/spark/clin-variant-etl.jar
+            - name: SPARK_CLIENT_POD_NAME
+              valueFrom:
+                fieldRef:
+                  fieldPath: metadata.name
+
+          image: "ferlabcrsj/spark:3.1.2"
+          name: varsome-etl
+          volumeMounts:
+            -
+              mountPath: /opt/spark-configs/defaults
+              name: spark-defaults
+              readOnly: true
+            -
+              mountPath: /opt/spark-configs/varsome-etl
+              name: varsome-etl
+              readOnly: true
+            -
+              mountPath: /opt/spark-configs/s3-credentials
+              name: s3-credentials
+              readOnly: true
+            -
+              mountPath: /opt/spark-configs/varsome
+              name: varsome
+              readOnly: true
+      restartPolicy: Never
+      serviceAccountName: spark
+      volumes:
+        -
+          configMap:
+            name: spark-defaults
+          name: spark-defaults
+        -
+          configMap:
+            name: varsome-etl
+          name: varsome-etl
+        -
+          name: s3-credentials
+          secret:
+            secretName: s3-credentials
+        -
+          name: varsome
+          secret:
+            secretName: varsome
