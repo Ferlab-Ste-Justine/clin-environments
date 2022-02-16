@@ -11,8 +11,6 @@ spec:
         - image: index.docker.io/ferlabcrsj/clin-frontend:3eb42f6658b69375b6795c9593623674e3624c32-1644510204 # {"$imagepolicy": "flux-clin-qa:frontend"}
           name: clin-frontend
           env:
-            - name: CLIN_UI
-              value: https://qa.clin.ferlab.bio
             - name: PATIENT_SERVICE_URL
               value: https://patient.qa.clin.ferlab.bio/patient
             - name: VARIANT_SERVICE_URL
