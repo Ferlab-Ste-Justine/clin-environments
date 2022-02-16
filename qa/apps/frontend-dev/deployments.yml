@@ -28,7 +28,7 @@ spec:
               cpu: '1.00'
           env:
             - name: CLIN_UI
-              value: https://qa.clin.ferlab.bio
+              value: https://dev.qa.clin.ferlab.bio
             - name: PATIENT_SERVICE_URL
               value: https://patient.qa.clin.ferlab.bio/patient
             - name: VARIANT_SERVICE_URL
