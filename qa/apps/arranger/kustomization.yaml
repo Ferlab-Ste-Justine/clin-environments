@@ -20,6 +20,6 @@ configMapGenerator:
       - AUTH_SERVER_URL=https://auth.qa.clin.ferlab.bio/auth
       - AUTH_REALM=clin
       - SERVICE_ACCOUNT_CLIENT_ID=clin-system
-      - SECURE="true"
+      - USE_SECURITY="true"
       - PORT=5050
       - VARIANTS_SUGGESTIONS_INDEX_NAME=clin_qa_variant_suggestions
