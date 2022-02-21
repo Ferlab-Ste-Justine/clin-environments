@@ -2,12 +2,12 @@
 apiVersion: v1
 kind: ConfigMap
 metadata:
-  name: raw-panels-etl
+  name: raw-import-external-etl
   labels:
     name: spark
 data:
   spark-ceph.conf: |
-    spark.app.name=raw-panels-etl
+    spark.app.name=raw-import-external-etl
     spark.kubernetes.container.image=ferlabcrsj/spark:3.1.2
     spark.sql.shuffle.partitions=500
     spark.sql.extensions=io.delta.sql.DeltaSparkSessionExtension
