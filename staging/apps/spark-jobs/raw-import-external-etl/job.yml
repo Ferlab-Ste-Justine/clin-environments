@@ -2,7 +2,7 @@
 apiVersion: batch/v1
 kind: Job
 metadata:
-  name: raw-import-external-etl
+  name: raw-import-external-etl-$JOBNAME
 spec:
   template:
     spec:
@@ -10,7 +10,7 @@ spec:
       imagePullSecrets:
         - name: images-pull
       containers:
-      - name: raw-import-external-etl
+      - name: raw-import-external-etl-$JOBNAME
         image: ferlabcrsj/spark:3.1.2
         env:
           - name: SPARK_CLASS
