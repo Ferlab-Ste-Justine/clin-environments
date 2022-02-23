@@ -15,4 +15,4 @@ configMapGenerator:
       - HAPI_FHIR_SERVER_ADDRESS=https://__UNDEFINED__/fhir/
       - HAPI_FHIR_GRAPHQL_ENABLED=true
       - JAVA_OPTS="-server -Xmx1024m -Djava.net.preferIPv4Stack=true -Djava.awt.headless=true -XX:+UseContainerSupport"
-      - BIO_TAGGING_ENABLED=false
+      - BIO_TAGGING_ENABLED=true

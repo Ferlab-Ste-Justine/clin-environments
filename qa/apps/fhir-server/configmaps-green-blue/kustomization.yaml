@@ -35,4 +35,4 @@ configMapGenerator:
       - JAVA_OPTS="-server -Xmx2048m -Djava.net.preferIPv4Stack=true -Djava.awt.headless=true -XX:+UseContainerSupport"
       - BIO_ELASTICSEARCH_PATIENTS_INDEX=clin-qa-patients-blue
       - BIO_ELASTICSEARCH_PRESCRIPTIONS_INDEX=clin-qa-prescriptions-blue
-      - BIO_TAGGING_ENABLED=false
+      - BIO_TAGGING_ENABLED=true
