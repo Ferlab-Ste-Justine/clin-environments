@@ -34,7 +34,7 @@ spec:
       imagePullSecrets:
         - name: images-pull
       containers:
-        - image: index.docker.io/ferlabcrsj/clin-proxy-api-variant-service:2.1.8 # {"$imagepolicy": "flux-clin-staging:clin-proxy-api-variant-service"}
+        - image: index.docker.io/ferlabcrsj/clin-proxy-api-variant-service:2.1.9 # {"$imagepolicy": "flux-clin-staging:clin-proxy-api-variant-service"}
           name: clin-proxy-api-variant
 ---
 apiVersion: apps/v1
@@ -60,5 +60,5 @@ spec:
       imagePullSecrets:
         - name: images-pull
       containers:
-        - image: index.docker.io/ferlabcrsj/clin-proxy-api-hpo-service:2.1.8 # {"$imagepolicy": "flux-clin-staging:clin-proxy-api-hpo-service"}
+        - image: index.docker.io/ferlabcrsj/clin-proxy-api-hpo-service:2.1.9 # {"$imagepolicy": "flux-clin-staging:clin-proxy-api-hpo-service"}
           name: clin-proxy-api-hpo
