@@ -8,7 +8,7 @@ spec:
       imagePullSecrets:
         - name: images-pull
       containers:
-        - image: index.docker.io/ferlabcrsj/clin-proxy-api-meta-service:2.1.8 # {"$imagepolicy": "flux-clin-staging:clin-proxy-api-meta-service"}
+        - image: index.docker.io/ferlabcrsj/clin-proxy-api-meta-service:2.1.9 # {"$imagepolicy": "flux-clin-staging:clin-proxy-api-meta-service"}
           name: clin-proxy-api-meta
 ---
 apiVersion: apps/v1
@@ -21,7 +21,7 @@ spec:
       imagePullSecrets:
         - name: images-pull
       containers:
-        - image: index.docker.io/ferlabcrsj/clin-proxy-api-gene-service:2.1.8 # {"$imagepolicy": "flux-clin-staging:clin-proxy-api-gene-service"}
+        - image: index.docker.io/ferlabcrsj/clin-proxy-api-gene-service:2.1.9 # {"$imagepolicy": "flux-clin-staging:clin-proxy-api-gene-service"}
           name: clin-proxy-api-gene
 ---
 apiVersion: apps/v1
@@ -47,7 +47,7 @@ spec:
       imagePullSecrets:
         - name: images-pull
       containers:
-        - image: index.docker.io/ferlabcrsj/clin-proxy-api-patient-service:2.1.8 # {"$imagepolicy": "flux-clin-staging:clin-proxy-api-patient-service"}
+        - image: index.docker.io/ferlabcrsj/clin-proxy-api-patient-service:2.1.9 # {"$imagepolicy": "flux-clin-staging:clin-proxy-api-patient-service"}
           name: clin-proxy-api-patient
 ---
 apiVersion: apps/v1
