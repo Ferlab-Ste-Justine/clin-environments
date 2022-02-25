@@ -23,3 +23,5 @@ configMapGenerator:
       - USE_SECURITY="true"
       - PORT=5050
       - VARIANTS_SUGGESTIONS_INDEX_NAME=clin_qa_variant_suggestions
+      - PATIENTS_INDEX_NAME=clin-qa-patients
+      - VARIANTS_INDEX_NAME=clin_qa_variant_centric
