@@ -11,7 +11,7 @@ configMapGenerator:
       disableNameSuffixHash: false
     literals:
       - S3_ENDPOINT=https://s3.ops.cqdg.ferlab.bio
-      - S3_BUCKET=clin-qa-app-fhir-backups
+      - S3_BUCKET=clin-staging-app-fhir-backups
       - S3_REGION=RegionOne
       #15 days
       - S3_BACKUP_MAX_AGE="1296000"
@@ -19,8 +19,8 @@ configMapGenerator:
     options:
       disableNameSuffixHash: true
     literals:
-      - PGDATABASE=fhir
-      - PGHOST=clin-fhir-db-incoming
+      - PGDATABASE=clin_fhir_staging
+      - PGHOST=postgres-server-qa
   - name: clin-fhir-server-db-connection-tls
     options:
       disableNameSuffixHash: true
