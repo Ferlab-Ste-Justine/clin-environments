@@ -23,7 +23,7 @@ configMapGenerator:
       disableNameSuffixHash: true
     literals:
       - PGDATABASE=clin_fhir_qa
-      - PGHOST=postgres-server-qa
+      - PGHOST=clin_fhir_qa_blue
   - name: clin-fhir-server-db-connection-tls
     options:
       disableNameSuffixHash: true
