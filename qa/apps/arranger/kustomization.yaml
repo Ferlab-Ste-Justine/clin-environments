@@ -25,3 +25,4 @@ configMapGenerator:
       - VARIANTS_SUGGESTIONS_INDEX_NAME=clin_qa_variant_suggestions
       - PATIENTS_INDEX_NAME=clin-qa-patients
       - VARIANTS_INDEX_NAME=clin_qa_variant_centric
+      - PRESCRIPTION_INDEX_NAME=clin-qa-prescriptions
